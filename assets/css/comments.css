@@ -1,0 +1,22 @@
+/**************************************************************************/
+/*******************COMMENTS*************************************/
+/**************************************************************************/
+
+textarea#comment {
+    display:block;
+}
+.comment-respond h3 {
+    text-transform: uppercase;
+}
+.comment-respond h3:before {
+    content:'';
+    display:block;
+    width:30%;
+    margin:40px auto;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgb(20 20 20 / 75%), rgba(255, 255, 255, 0));
+    height: 1px;
+}
+.comment-form-comment label {
+    color:var(--default-orange-color);
+    text-transform: uppercase;
+}

@@ -1,0 +1,51 @@
+/* Fond */ 
+body {
+    background: #222;
+  }
+  
+  /* Logo */
+  #login h1 a, .login h1 a {
+    background-image: url('./assets//images/white-logo.png');
+    height: 200px;
+    width:200px;
+    background-size: 200px;
+    
+  }
+  
+  /* Bouton */
+  
+  .wp-core-ui .button-primary {
+    background: #83BD71;
+    border-color: #83BD71;
+  }
+  
+  /* Liens */
+  .login #backtoblog a, 
+  .login #nav a,
+  .privacy-policy-page-link a {
+    color: #BBBFCE;
+  }
+  /* Liens */
+  .login #backtoblog a:hover, 
+  .login #nav a:hover,
+  .privacy-policy-page-link a:hover {
+    color:#ff9900 ;
+  }
+
+  .wp-core-ui .button-primary {
+    background:#222;
+    border:none;
+}
+.wp-core-ui .button-primary:hover {
+    background: #222;
+    border:none;
+    color:#ff9900;
+}
+.login #login_error, .login .message, .login .success {
+    border-left: 10px solid #ff9900;
+    padding: 12px;
+    margin-left: 0;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 1px 1px 0 rgb(0 0 0 / 10%);
+}

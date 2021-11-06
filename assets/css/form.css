@@ -1,0 +1,39 @@
+/***********************************************************/
+/********************Form****************************/
+/***********************************************************/
+.wp-block-search__inside-wrapper {
+    display: flex!important;
+    flex-wrap: wrap!important;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+input, .wp-block-search .wp-block-search__input {
+    flex-grow: 1;
+    min-width: 3em;
+    border: 1px solid #949494;
+    display: block;
+}
+button, .wp-block-search .wp-block-search__button {
+    cursor:pointer;
+    background:#fff;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    color: #32373c;
+   
+    margin:1rem 0;
+    word-break: normal;
+    border-radius: 0.5em;
+    font-family:"Titillium Web", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    transition:all 0.4s ease-in-out;
+}
+
+button:hover, .wp-block-search .wp-block-search__button:hover {    
+    color:#fff;
+    background:#d93;
+}
+
+.wp-block-search .wp-block-search__label {
+    width: 100%;
+    color: #4F4F4F;
+}

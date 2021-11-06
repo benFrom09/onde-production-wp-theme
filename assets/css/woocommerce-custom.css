@@ -1,0 +1,126 @@
+
+/*--------------------------------------------------------------
+Custom WooCommerce Styling
+--------------------------------------------------------------*/
+.woocommerce-breadcrumb {
+    line-height: 15px;
+    font-size: 13px;
+    font-weight: 300;
+    margin: 30px auto 30px auto;
+    text-align: center;
+}
+
+.woocommerce-breadcrumb a {
+	text-decoration:none;
+	color:#939598;
+}
+
+.woocommerce-products-header h1 {
+	padding-bottom: 20px !important;
+    background: url('../images/heading-underline.jpg') center bottom no-repeat;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    margin: 0 0 26px 0;
+}
+
+.woocommerce-result-count {
+	color: #939598
+}
+
+.woocommerce-ordering {
+	margin:30px 0;
+    text-align:center;
+}
+
+ ul.products {
+    margin: 0 0 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+}
+ul.products li.product img {
+    display: block;
+    margin: auto;
+}
+li.product {
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+li.product .onsale {
+	position: absolute;
+    text-align: center;
+    padding: 10px;
+    text-transform: uppercase;
+    min-width: 3em;
+    min-height: 3em;
+    line-height: 3.3em;
+    border-radius: 100%;
+    /* width: 45px; */
+    /* height: 45px; */
+    margin: 0;
+    font-size: 14px;
+    text-shadow: none;
+    font-weight: 400;
+    text-transform: uppercase;
+    left: 50%;
+    top: 0;
+    color: #FFFFFF;
+    background-color: #ba2227;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 8%) inset;
+}
+
+ ul.products li.product a.add_to_cart_button, ul.products li.product a.add_to_cart_button, ul.products li.product a.ajax_add_to_cart, ul.products li.product a.ajax_add_to_cart {
+    color: #FFFFFF;
+    border-radius: 0;
+    border: none;
+    display: table;
+    max-width: 100%;
+    width: auto;
+    line-height: 1;
+    padding: .9em 1em .8em;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 20px;
+	background:#000;
+	text-decoration:none;
+	margin: 8px 0 0;
+}
+
+ul.products li.product .price {
+    color: #77a464;
+    display: block;
+    font-weight: 400;
+    margin-bottom: .5em;
+    font-size: .857em;
+}
+
+
+ ul.products li.product .price ins {
+	background: 0 0;
+    font-weight: 700;
+    color: #ba2227;
+    display: inline-block;
+}
+.woocommerce-price-suffix {
+	color:#000;
+}
+
+@media screen and (min-width: 48em){
+    ul.products li.product {
+    width: 30.79667%;
+    float: left;
+    margin-right: auto!important;
+    }
+}
+@media screen and (min-width: 48em){
+
+}
+ul.products.columns-4 li.product {
+    margin:20px auto;
+    text-align:center;
+}
