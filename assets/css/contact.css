@@ -11,8 +11,4 @@
     width:100%;
 }
 
-@media screen and (min-width:1024px) {
-    .page-template-contact .site-main {
-        margin-left:250px;
-    }
-}
+
