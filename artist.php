@@ -36,28 +36,17 @@ get_header();
     </section><!-- #main -->
     <aside id="sidebar-L" class="sidebar">
 
-        <?php if (is_active_sidebar('sidebar-artist')) : ?>
-            <div class="widgets-icons">
-                <p>
-                    <?php echo __('Click on icon below to open the sidebar', 'onde-production'); ?>
-                </p>
-                <div class="icon-container">
-                    <i id="open-sidebar-btn" class="fas fa-chevron-down"></i>
-                </div>
-            </div>
-            <div id="left-widget-area" class="widget-area">
-                <div class="close">
-                    <i id="sidebar-close-btn" class="fas fa-times"></i>
-                </div>
-                <div class="widgets-container">
-                    <?php dynamic_sidebar('sidebar-artist'); ?>
-                </div>
-
-            </div><!-- #secondary -->
-
-        <?php endif;  ?>
+        <?php if (is_active_sidebar('sidebar-artist')) :
+            dynamic_sidebar('sidebar-artist');
+        endif;  ?>
     </aside>
-    <aside id="sidebar-R" class="sidebar"></aside>
+    <aside id="sidebar-R" class="sidebar">
+        <?php if (!is_active_sidebar('sidebar-right')) : ?>
+
+        <?php endif;
+        dynamic_sidebar('sidebar-right');
+        ?>
+    </aside>
 </main>
 <?php
 get_footer();

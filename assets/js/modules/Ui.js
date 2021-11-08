@@ -25,10 +25,6 @@ export const Ui = {
      * LEFT-SIDEBAR
      */
 
-    onde_open_sidebar_btn:document.querySelector('#open-sidebar-btn'),
-    onde_sticky_sidebar_trigger:document.querySelector('.widgets-icons'),
-    onde_sidebar:document.querySelector('.sidebar'),
-    onde_sidebar_close_btn:document.querySelector('#sidebar-close-btn'),
     /**
      * ELEMENTS FOR HEADER ANIMATION
      */

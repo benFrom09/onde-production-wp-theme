@@ -34,13 +34,19 @@ get_header();
 
 	</section><!-- #main -->
 	<aside id="sidebar-L" class="sidebar">
-			<?php
-			if (!is_front_page()) {
-				get_sidebar();
-			}
-			?>
+		<?php
+		if (!is_front_page()) {
+			get_sidebar();
+		}
+		?>
 	</aside>
-	<aside id="sidebar-R" class="sidebar"></aside>
+	<aside id="sidebar-R" class="sidebar">
+		<?php if (!is_active_sidebar('sidebar-right')) : ?>
+
+		<?php endif;
+		dynamic_sidebar('sidebar-right');
+		?>
+	</aside>
 </main>
 <?php
 get_footer();

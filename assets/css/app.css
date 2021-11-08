@@ -12,6 +12,10 @@
 * {
     box-sizing:border-box;
 }
+body {
+    background:var(--default-dark-color);
+    color:#fff;
+}
 p {
     line-height:1.5em;
     margin-top:1rem;
@@ -179,7 +183,6 @@ label, .wp-block-search .wp-block-search__label {
 }
  
 #sidebar-L, #sidebar-R {
-    background-color:var(--default-dark-color);
     color:#fff;
 }
 
@@ -222,7 +225,6 @@ select {
     color: #fff;
     border: 1px solid #fff;
     border-radius: 4px;
-    width: 80%;
     font-size: 14px;
 }
 .sidebar select option {
@@ -241,7 +243,6 @@ select {
 
 
 .page-default #sidebar-L,.page-default #sidebar-R {
-    background-color:var(--default-dark-color);
     color:#fff;
 }
 
@@ -272,47 +273,6 @@ select {
     box-shadow: rgba(50,50,93,.25) 0px 50px 100px -20px,rgba(0,0,0,.3) 0px 30px 60px -30px;
    
 }
-
-.widgets-icons .icon-container {
-    padding:1rem;
-    width:100px;
-    margin:auto;
-    cursor:pointer;
-    font-size:1.5em;
-}
-.sidebar-opened button, .sidebar-opened .wp-block-search .wp-block-search__button {
-    background: var(--default-orange-color);
-    color:var(--default-dark-color);
-    font-size: 14px;
-}
-.sidebar-opened button:hover, .sidebar-opened .wp-block-search .wp-block-search__button:hover {
-   color:#fff;
-}
-#open-sidebar-btn {
-    color:var(--default-orange-color);
-}
-
-#open-sidebar-btn:hover {
-    color:#fff;
-}
-
-.sidebar-opened #left-widget-area {
-    position:sticky;
-    top:100px;
-    left:0;
-    max-width:250px;
-    padding:0.5em;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    transition:all 0.6s ease;
-}
-
-#sidebar-L .triggered {
-    position:absolute;
-    left:-250px;
-}
-
 .sidebar input, .sidebar  .wp-block-search .wp-block-search__input {
     color:#fff;
     border: 1px solid #fff;
@@ -351,6 +311,8 @@ select {
     .site-main, .page-default .site-main {
         grid-area: main;
         padding:56px;
+        background:#fff;
+        color: var(--default-dark-color);
     }
     
     .page-default #sidebar-L {

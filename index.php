@@ -59,7 +59,13 @@ get_header();
 		}
 		?>
 	</aside>
-	<aside id="sidebar-R" class="sidebar"></aside>
+	<aside id="sidebar-R" class="sidebar">
+	<?php if(!is_active_sidebar('sidebar-right')): ?>
+
+		<?php endif; 
+		dynamic_sidebar('sidebar-right');
+		?>
+	</aside>
 </main>
 <?php
 

@@ -191,19 +191,19 @@ function onde_production_widgets_init()
 {
 	register_sidebar(array(
 		'name'          => esc_html__('Sidebar Left', 'onde-production'),
-		'id'            => 'sidebar-1',
+		'id'            => 'sidebar-left',
 		'description'   => '',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>'
 	));
 	register_sidebar(array(
 		'name'          => esc_html__('Sidebar Right', 'onde-production'),
-		'id'            => 'sidebar-2',
+		'id'            => 'sidebar-right',
 		'description'   => '',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>'
 	));
@@ -211,8 +211,8 @@ function onde_production_widgets_init()
 		'name'          => esc_html__('Sidebar Artist', 'onde-production'),
 		'id'            => 'sidebar-artist',
 		'description'   => '',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>'
 	));
@@ -220,6 +220,15 @@ function onde_production_widgets_init()
 		'name' => __('Footer', 'onde-production'),
 		'id' => 'footer',
 		'description' => ''
+	));
+	register_sidebar(array(
+		'name'          => esc_html__('Sidebar Prestation', 'onde-production'),
+		'id'            => 'sidebar-prestation',
+		'description'   => '',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>'
 	));
 }
 add_action('widgets_init', 'onde_production_widgets_init');
