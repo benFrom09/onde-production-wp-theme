@@ -11,9 +11,9 @@ get_header();
 </div> -->
 <main class="front-page main-content-wrapper">
 <section class="parallax-container site-main">
-	<div id="slide1" class="slide"></div>
+	<div id="slide1" class="slide">
+	</div>
 	<div id="slide2" class="slide">
-		<div class="slide-overlay"></div>
 	</div>
 	<div id="slide3" class="slide"></div>
 	<div id="front-page-content-post" class="content-post">

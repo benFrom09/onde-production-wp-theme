@@ -9,7 +9,8 @@
     align-items:center;
     padding:1rem;
 	position: absolute;
-    top: 0;
+    top: 50%;
+	transform:translateY(-50%);
 	left:0;
 }
 
@@ -22,7 +23,10 @@
     width:95%;
     margin:auto;
 }
-
+.menu li,.sub-menu li {
+	margin:0;
+	list-style:none;
+}
 .menu-item {
     padding:1rem;
 }

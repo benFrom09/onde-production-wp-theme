@@ -4,6 +4,7 @@
 
 textarea#comment {
     display:block;
+    max-width:100%
 }
 .comment-respond h3 {
     text-transform: uppercase;

@@ -187,8 +187,12 @@ add_action('after_setup_theme', 'onde_production_content_width', 0);
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
+
+ require_once 'widgets/YoutubeWidget.php';
+
 function onde_production_widgets_init()
 {
+	register_widget(YoutubeWidget::class);
 	register_sidebar(array(
 		'name'          => esc_html__('Sidebar Left', 'onde-production'),
 		'id'            => 'sidebar-left',
@@ -306,3 +310,4 @@ if (defined('JETPACK__VERSION')) {
 if (class_exists('WooCommerce')) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+

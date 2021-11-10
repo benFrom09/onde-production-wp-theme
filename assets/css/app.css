@@ -2,24 +2,48 @@
 @import './header.css';
 @import './navigation.css';
 @import './blog.css';
-@import './woocommerce-custom.css';
+@import './sidebar.css';
 @import './comments.css';
 @import './footer.css';
 @import './contact.css';
 /*****************************************************************************/
 /***************************      ONDE DEFAULT STYLE       ****************************/
 /*****************************************************************************/
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--default-orange-color);
+    background: linear-gradient(90deg, rgba(252,142,69,1) 0%, rgba(244,191,15,1) 34%, rgba(255,153,0,1) 100%);
+    border-radius: 10px;
+  }
+  ::-webkit-resizer {
+
+  }
 * {
     box-sizing:border-box;
 }
 body {
     background:var(--default-dark-color);
     color:#fff;
+    overflow:auto;
+}
+body.nav-opened {
+    overflow:hidden;
 }
 p {
     line-height:1.5em;
-    margin-top:1rem;
-    margin-bottom:1rem;
+    margin-top:1.5em;
+    margin-bottom:1.5em;
 }
 h2 {
     margin: 1.5rem auto;
@@ -41,6 +65,11 @@ a {
     text-decoration:none;
     color:var(--default-orange-color);
 }
+
+li {
+    margin:1rem auto;
+    list-style:inside;
+}
 hr {
     margin: 0 auto;
     margin: 40px auto;
@@ -53,7 +82,6 @@ pre {
 	line-height: 1.5em;
     padding: 1rem;
     border-radius: 4px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 pre code {
 	padding: 10px;
@@ -63,6 +91,22 @@ pre code {
 img {
     max-width:100%;
     height: auto;
+}
+
+table {
+    width:100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    line-height: 1.2rem;
+}
+table th {
+    text-align: left;
+}
+thead {
+    font-weight: bold;
+}
+table caption {
+    margin:0.3rem auto;
 }
 .search-field {
     border:1px solid #949494;
@@ -92,16 +136,55 @@ button:hover, .wp-block-search .wp-block-search__button:hover {
     display: grid;
     grid-template-columns: 50% 1fr;
     grid-template-rows: auto;
+    margin-bottom:2.5em;
+}
+.wp-block-media-text__content p {
+    margin:0;
+}
+.wp-block-media-text__content h3 {
+    margin-bottom: 1.5em;
+    margin-top: 1.5em;
 }
 .wp-block-media-text .wp-block-media-text__media {
     grid-column: 1;
     grid-row: 1;
-    margin-top:2rem;
+    margin-top:1.5rem;
+    margin-bottom: 1.5em;
     align-self:start;
+}
+.has-onde-dark-background-color,.has-background {
+    margin:1.2rem auto;
+    
+}
+
+pre.wp-block-verse {
+    overflow: unset;
+}
+
+li.widget_block {
+    list-style: inside;
+}
+.wp-block-cover-image img.wp-block-cover__image-background, .wp-block-cover-image video.wp-block-cover__video-background, .wp-block-cover img.wp-block-cover__image-background, .wp-block-cover video.wp-block-cover__video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    -o-object-fit: cover;
+    object-fit: cover;
+    outline: none;
+    border: none;
+    box-shadow: none;
 }
 @media screen and (min-width:0) and (max-width:1280px) {
 
-    p.has-background,ul.has-background {
+    .has-onde-dark-background-color,.has-background,ul.has-background {
         padding:14px;
     }
     
@@ -127,6 +210,7 @@ label, .wp-block-search .wp-block-search__label {
 }
 .has-onde-dark-background-color {
     background-color:var(--default-dark-color);
+    border-radius:5px;
 }
 .has-onde-orange-background-color {
     background-color:var(--default-orange-color);
@@ -139,38 +223,24 @@ label, .wp-block-search .wp-block-search__label {
 .has-onde-black-color {
     color:#000;
 }
-
-.wp-block-cover, .wp-block-cover-image {
-    position: relative;
-    background-size: unset;
-    background-position: unset;
-    min-height: unset;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: unset;
-    box-sizing: border-box;
+p.has-background {
+    padding:1.25em 0.8em;
 }
-.wp-block-cover-image img.wp-block-cover__image-background, .wp-block-cover-image video.wp-block-cover__video-background, .wp-block-cover img.wp-block-cover__image-background, .wp-block-cover video.wp-block-cover__video-background {
-    position: static;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    max-width: none;
-    max-height: none;
-    -o-object-fit: cover;
-    object-fit: cover;
-    outline: none;
-    border: none;
+p.has-normal-font-size img, p img {
+    position:relative;
+    top:0.5em;
+}
+.wp-block-cover {
+    background:transparent;
     box-shadow: none;
+    border:none;
 }
-
+ul.wp-block-rss  {
+    list-style-type: none;
+}
+ul.wp-block-rss li  {
+    list-style: none;
+}
 .entry-footer {
     padding:2em 0;
 }
@@ -221,16 +291,7 @@ select {
     line-height: inherit;
     margin-bottom:1rem;
 }
-.sidebar select {
-    color: #fff;
-    border: 1px solid #fff;
-    border-radius: 4px;
-    font-size: 14px;
-}
-.sidebar select option {
 
-    color:var(--default-orange-color);
-}
 /*****************************************************************************/
 /***************************      FOOTER       ****************************/
 /*****************************************************************************/
@@ -241,6 +302,11 @@ select {
 /***************************       PAGEPHP        ****************************/
 /*****************************************************************************/
 
+.site-main, .page-default .site-main {
+    background:#fff;
+    color: var(--default-dark-color);
+    padding:2em 0.8em;
+}
 
 .page-default #sidebar-L,.page-default #sidebar-R {
     color:#fff;
@@ -297,7 +363,8 @@ select {
     cursor:pointer;
 }
 .main-content-wrapper {
-    padding:25px;
+    padding:5px;
+    width:100%;
 }
 @media screen and (min-width:1200px) {
 
@@ -311,8 +378,7 @@ select {
     .site-main, .page-default .site-main {
         grid-area: main;
         padding:56px;
-        background:#fff;
-        color: var(--default-dark-color);
+        
     }
     
     .page-default #sidebar-L {
@@ -369,12 +435,17 @@ select {
  #slide3 {
      background:#000;
  }
- 
- .slide-overlay {
-     height: 100%;
+
+ .slide::after {
+     content:' ';
+     position:absolute;
+     left:0;
+     top:0;
      width:100%;
-     background:#00000061;
+     height: 100%;
+     background: #00000040;;
  }
+ 
  .parallax-container .slide {
      position:absolute;
      top:0;
@@ -385,9 +456,17 @@ select {
      pointer-events:none;
  }
  
- 
+ .onde-front-page-entry-content {
+    padding:1em;
+}
+ @media screen and (min-width:1200px) {
+    .onde-front-page-entry-content {
+        padding:1.5em;
+    }
+ }
  #front-page-content-post {
      position: absolute;
+     width:100%;
      text-align: center;
      margin: auto;
      transform:translate3d(0,0,0);

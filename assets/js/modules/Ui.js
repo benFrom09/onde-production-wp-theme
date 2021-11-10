@@ -15,11 +15,13 @@ export const Ui = {
     /**
      * Navigation DomElements
      */
-    onde_navbar:document.querySelector('#site-navigation'),
+    onde_navbar:document.querySelector('.main-navigation'),
     onde_site_branding:document.querySelector('.site-branding'),
+    onde_menu_container:document.querySelector('.onde-menu-container'),
     onde_topbar:document.querySelector('.top-bar'),
     onde_header_image:document.querySelector('.header-image'),
     onde_main_content_wrapper:document.querySelector('.main-content-wrapper'),
+    onde_menu_toggle_btn:document.querySelector('#main-menu-toggle'),
 
     /**
      * LEFT-SIDEBAR

@@ -116,6 +116,7 @@
     flex-direction:column;
     order:-3;
     z-index:1000;
+    position: relative;
 }
 .top-bar .left,.top-bar .right {
     display:flex;

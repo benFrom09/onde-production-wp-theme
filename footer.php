@@ -13,6 +13,9 @@
 ?>
 
 <footer id="colophon" class="site-footer">
+	<div class="footer-widget">
+		<?php dynamic_sidebar('footer'); ?>
+	</div>
 	<div class="site-info">
 		<?php
 		$site_info = get_theme_mod('onde-site-info', '');

@@ -45,7 +45,7 @@ add_action( 'after_setup_theme', 'onde_production_woocommerce_setup' );
  */
 function onde_production_woocommerce_scripts() {
 	wp_enqueue_style( 'onde-production-woocommerce-style', get_template_directory_uri() . '/woocommerce.css', array(), _S_VERSION );
-
+	wp_enqueue_style( 'onde-production-woocommerce-custom-style', get_template_directory_uri() . '/assets/css/woocommerce-custom.css', array(), _S_VERSION );
 	$font_path   = WC()->plugin_url() . '/assets/fonts/';
 	$inline_font = '@font-face {
 			font-family: "star";
@@ -231,6 +231,7 @@ if ( ! function_exists( 'onde_production_woocommerce_header_cart' ) ) {
 		<?php
 	}
 }
+/*
 /**
  * activete gutemberg block on product page
  *
@@ -238,6 +239,7 @@ if ( ! function_exists( 'onde_production_woocommerce_header_cart' ) ) {
  * @param [type] $post_type
  * @return void
  */
+/*
 function onde_production_activate_gutenberg_products($can_edit, $post_type){
 	if($post_type == 'product'){
 		$can_edit = true;
@@ -246,3 +248,4 @@ function onde_production_activate_gutenberg_products($can_edit, $post_type){
 	return $can_edit;
 }
 add_filter('use_block_editor_for_post_type', 'onde_production__activate_gutenberg_products', 10, 2);
+*/

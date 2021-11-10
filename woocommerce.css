@@ -120,7 +120,7 @@ ul.products li.product .button {
 	}
 
 	ul.products.columns-4 li.product {
-		width: 22.15%;
+		max-width: 300px;
 	}
 
 	ul.products.columns-5 li.product {
@@ -564,4 +564,18 @@ p.no-comments {
 
 .widget_price_filter .ui-slider-horizontal .ui-slider-range {
 	height: 100%;
+}
+
+/*******************************************************************/
+/*************************Product-image****************************/
+
+.wp-caption{
+	width:100%!important;
+    max-width: 300px!important;
+	min-width:150px!important;
+}
+.wp-caption-text {
+	margin:1rem auto;
+	text-align:center;
+	color:#8f8f8f;
 }
