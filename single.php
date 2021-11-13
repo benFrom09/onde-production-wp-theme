@@ -10,7 +10,7 @@
 
 get_header();
 ?>
-<main class="page-default main-content-wrapper">
+<main class="page-default single-default main-content-wrapper">
 	<section id="main-content" class="site-main">
 		<div class="post-container">
 		<?php

@@ -9,14 +9,26 @@ footer.site-footer {
    flex-direction:row;
    align-items: center;
    justify-content: center;
+   border-top: 5px solid black;
+   min-height:200px;
 }
 
 footer.site-footer a {
     color:#fff;
 }
+.footer-widget, .site-info {
+    width:50%;
+    margin:1em;
+}
+.footer-sep {
+    background:var(--default-dark-color);
+    min-height:200px;
+    width:1px;
+}
 .site-info {
     font-family: inherit;
     font-weight: 700;
+    
 }
 @media screen and (min-width:1200px) {
     footer.site-footer {

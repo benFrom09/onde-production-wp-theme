@@ -1,10 +1,9 @@
 <?php
 
 /**
- * Template Name: Page artistes
- * The template for displaying all pages
+ * Template Name: Page Prestation/Service
+ * The template for displaying Service pages
  *
- * This is the template that displays all pages by default.
  * Please note that this is the WordPress construct of pages
  * and that other 'pages' on your WordPress site may use a
  * different template.
@@ -16,7 +15,7 @@
 
 get_header();
 ?>
-<main class="page-default artist-model main-content-wrapper">
+<main class="page-default prestation-model main-content-wrapper">
     <section id="main-content" class="site-main">
 
         <?php
@@ -36,8 +35,8 @@ get_header();
     </section><!-- #main -->
     <aside id="sidebar-L" class="sidebar">
 
-        <?php if (is_active_sidebar('sidebar-artist')) :
-            dynamic_sidebar('sidebar-artist');
+        <?php if (is_active_sidebar('sidebar-prestation')) :
+            dynamic_sidebar('sidebar-prestation');
         endif;  ?>
     </aside>
     <aside id="sidebar-R" class="sidebar">

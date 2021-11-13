@@ -15,7 +15,7 @@
 
 get_header();
 ?>
-<main class="page-default main-content-wrapper">
+<main class="page-default default-model main-content-wrapper">
 	<section id="main-content" class="site-main">
 
 		<?php

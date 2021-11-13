@@ -1,4 +1,5 @@
 <?php
+namespace Onde\widgets;
 
 
 class YoutubeFeeder {
@@ -16,7 +17,7 @@ class YoutubeFeeder {
         for($i = 0; $i < $number; $i++) {
             $link = $xml->entry[$i]->id;
             $link = str_replace('yt:video:','',$link);
-            $video[]= '<figure><iframe id="video-51-1_youtube_iframe" 
+            $video[]= '<figure class="yt-video"><iframe id="video-51-1_youtube_iframe" 
             frameborder="0" allowfullscreen="1" allow="accelerometer; 
             autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             title="YouTube video player" src="https://www.youtube.com/embed/' . $link . '?controls=0&amp;

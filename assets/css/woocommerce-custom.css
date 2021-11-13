@@ -1,6 +1,7 @@
 /*--------------------------------------------------------------
 Custom WooCommerce Styling
 --------------------------------------------------------------*/
+
 .woocommerce-breadcrumb {
     line-height: 15px;
     font-size: 13px;
@@ -110,6 +111,10 @@ ul.products li.product .price {
     color: #ba2227;
     display: inline-block;
 }
+
+.product {
+    margin-top:2.5em;
+}
 .woocommerce-price-suffix {
 	color:#000;
 }
@@ -175,11 +180,60 @@ p.stars.selected a:not(.active)::before {
 .woocommerce-info, .woocommerce-noreviews, p.no-comments {
     background-color: transparent!important;
 }
-.woocommerce-error {
-    background-color: #fba9a9;
+.woocommerce-message,.woocommerce-error {
+    text-align:center;
+    position:relative;
+    display: flex;
+    flex-direction: column;
+    border-top-width: 4px!important;
+    border-top-style:solid;
+    list-style: none;
     padding: 1.5em;
     border-radius: 5px;
-    list-style: none;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06)!important;
+    margin:2.5em auto;
+}
+.woocommerce-error {
+    background-color: #fba9a9;  
+}
+.woocommerce-message {
+    border-top-color: #38b2ac!important;
+    background-color:#e6fffa;
+}
+.woocommerce-message .restore-item {
+    display: block;
+    padding: 1rem;
+    width: 150px;
+    margin: 1.5em auto;
+    border-radius: 5px;
+    background: black;
+    font-weight: bold;
+}
+.woocommerce-message:first-child::before {
+    content: 'i';
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #38b2ac!important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:0.3em 0.3em;
+    position: absolute;
+    top: 0.2em;
+    right: 0.2em;
+    color:#38b2ac;
+    font-weight: bold;
+}
+.cart-empty,.return-to-shop {
+    text-align:center;
+}
+@media screen and (min-width:1200px) {
+    .woocommerce-message,.woocommerce-error {
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+    }
 }
 /**************************************************************************/
 /***************************LOGIN FORM ************************************/

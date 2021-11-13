@@ -37,6 +37,9 @@ body {
     color:#fff;
     overflow:auto;
 }
+strong {
+    font-weight:bold;
+}
 body.nav-opened {
     overflow:hidden;
 }
@@ -57,7 +60,6 @@ input {
         color: var(--default-dark-color);
         background: transparent;
         border-radius:4px;
-        font-size: 100%;
         line-height: 1.15;
         margin: 0;
 }
@@ -111,26 +113,40 @@ table caption {
 .search-field {
     border:1px solid #949494;
 }
+/*
 .wp-block-search .wp-block-search__inside-wrapper {
     display: flex;
     flex: auto;
     flex-wrap: wrap;
     max-width: 100%;
 }
-button, .wp-block-search .wp-block-search__button {
+*/
+.wp-block-search .wp-block-search__inside-wrapper {
+    display: block;
+   
+}
+/******************************************************/
+/****************   BUTTON   **************************/
+/******************************************************/
+button, .wp-block-search .wp-block-search__button,.search-submit {
     background: var(--default-dark-color);
     padding: 1.2rem;
-    color: var(--default-orange-color);
+    color: var(--default-orange-color)!important;
     word-break: normal;
     cursor:pointer;
     border-radius: 4px;
     margin:1.2rem 0;
-    border:none;
 }
-button:hover, .wp-block-search .wp-block-search__button:hover {
-    color:#fff;
-    transition:color 0.3s ease;
+button:hover, .wp-block-search .wp-block-search__button:hover,.search-submit:hover {
+    color:#fff!important;
+    transition:color 0.1s ease;
+    background: var(--default-orange-color);
 }
+
+
+/**************************************************************/
+/*******************    WP-block    ***************************/
+/**************************************************************/
 .wp-block-media-text {
     direction: ltr;
     display: grid;
@@ -152,15 +168,20 @@ button:hover, .wp-block-search .wp-block-search__button:hover {
     margin-bottom: 1.5em;
     align-self:start;
 }
-.has-onde-dark-background-color,.has-background {
-    margin:1.2rem auto;
-    
-}
-
 pre.wp-block-verse {
     overflow: unset;
 }
-
+.wp-block-cover {
+    background:transparent;
+    box-shadow: none;
+    border:none;
+}
+ul.wp-block-rss  {
+    list-style-type: none;
+}
+ul.wp-block-rss li  {
+    list-style: none;
+}
 li.widget_block {
     list-style: inside;
 }
@@ -182,6 +203,39 @@ li.widget_block {
     border: none;
     box-shadow: none;
 }
+label, .wp-block-search .wp-block-search__label {
+    margin-bottom: 10px;
+    display: inline-block;
+    padding: 0.3rem 0;
+    font-size:inherit;
+}
+/*************************************************/
+/*************    Onde-bg    *********************/
+/*************************************************/
+.has-onde-dark-background-color,.has-background {
+    margin:1.2rem auto;
+    
+}
+.has-onde-dark-background-color {
+    background-color:var(--default-dark-color);
+    border-radius:5px;
+}
+.has-onde-orange-background-color {
+    background-color:var(--default-orange-color);
+}
+
+.has-onde-black-background-color {
+    background-color:#000;
+}
+
+p.has-background {
+    padding:1.25em 0.8em;
+}
+
+/**************************************************/
+
+
+
 @media screen and (min-width:0) and (max-width:1280px) {
 
     .has-onde-dark-background-color,.has-background,ul.has-background {
@@ -196,51 +250,23 @@ li.widget_block {
         padding:0;
     }
 }
-label, .wp-block-search .wp-block-search__label {
-    margin-bottom: 10px;
-    display: inline-block;
-    padding: 0.3rem;
-    font-size:inherit;
-}
+
 .has-onde-orange-color {
     color:var(--default-orange-color);
 }
 .has-onde-dark-color {
     color:var(--default-dark-color);
 }
-.has-onde-dark-background-color {
-    background-color:var(--default-dark-color);
-    border-radius:5px;
-}
-.has-onde-orange-background-color {
-    background-color:var(--default-orange-color);
-}
-
-.has-onde-black-background-color {
-    background-color:#000;
-}
 
 .has-onde-black-color {
     color:#000;
 }
-p.has-background {
-    padding:1.25em 0.8em;
-}
+
 p.has-normal-font-size img, p img {
     position:relative;
     top:0.5em;
 }
-.wp-block-cover {
-    background:transparent;
-    box-shadow: none;
-    border:none;
-}
-ul.wp-block-rss  {
-    list-style-type: none;
-}
-ul.wp-block-rss li  {
-    list-style: none;
-}
+
 .entry-footer {
     padding:2em 0;
 }
@@ -339,29 +365,7 @@ select {
     box-shadow: rgba(50,50,93,.25) 0px 50px 100px -20px,rgba(0,0,0,.3) 0px 30px 60px -30px;
    
 }
-.sidebar input, .sidebar  .wp-block-search .wp-block-search__input {
-    color:#fff;
-    border: 1px solid #fff;
-}
 
-.sidebar label,.sidebar .wp-block-search .wp-block-search__label {
-  color:var(--default-orange-color);
-  font-family:'marcellus';
-}
-
-.sidebar .widget-title {
-    margin:10px auto;
-    color:var(--default-orange-color);
-}
-.sidebar .close {
-    margin-bottom:1.5em;
-}
-#sidebar-close-btn {
-    color:var(--default-orange-color);
-    font-size:1.5em;
-    padding: 1rem 1rem 1rem 0;
-    cursor:pointer;
-}
 .main-content-wrapper {
     padding:5px;
     width:100%;
@@ -383,6 +387,7 @@ select {
     
     .page-default #sidebar-L {
         grid-area:sidebarL;
+        
     }
 
     .page-default #sidebar-R {

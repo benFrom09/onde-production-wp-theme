@@ -1,6 +1,52 @@
 /*********************************************************/
 /*************SIDEBAR MAIN STYLE**************************/
 /*********************************************************/
+li.widget_block.widget_search {
+    list-style:none;
+}
+@media screen and (min-width:1200px) {
+    #sidebar-R,#sidebar-L {
+        display:flex;
+        flex-direction:column;
+        justify-content: flex-start;
+    }
+}
+footer label {
+    color:var(--default-dark-color);
+}
+.sidebar input,footer input, .sidebar  .wp-block-search .wp-block-search__input {
+    color:#fff;
+    border: 1px solid #fff;
+}
+
+.sidebar label,.sidebar .wp-block-search .wp-block-search__label {
+  color:var(--default-orange-color);
+  font-family:'marcellus';
+}
+
+.widget-title {
+    margin:10px auto;
+    color:var(--default-orange-color);
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+.widget-title::after {
+    content: ' ';
+    width:100%;
+    margin:.5em 0;
+    height:1px;
+    background:var(--default-orange-color);
+    display:block;
+}
+.sidebar .close {
+    margin-bottom:1.5em;
+}
+#sidebar-close-btn {
+    color:var(--default-orange-color);
+    font-size:1.5em;
+    padding: 1rem 1rem 1rem 0;
+    cursor:pointer;
+}
 .sidebar select {
     color: #fff;
     border: 1px solid #fff;
@@ -30,4 +76,38 @@
 }
 .gallery-caption {
     margin:0.2rem 0;
+}
+
+.sidebar .menu-item a {
+	color:#fff;
+    font-size: 0.8em;
+}
+
+.sidebar .menu-item  a:hover {
+	color:var(--default-orange-color);
+}
+
+/*********************************************************/
+/*********************  WIDGETS  *************************/
+/*********************************************************/
+.widget_social_media_widget {
+    list-style:none;
+}
+.onde-widget.social-media-icon {
+    width:30px;
+    height:auto;
+}
+.onde-widget.container-flex-we {
+    display:flex;
+    justify-content: space-evenly;
+    flex-wrap:wrap;
+}
+.onde-widget.container-flex-sc {
+    display:flex;
+    justify-content: flex-start;
+    align-items:center;
+    flex-wrap:wrap;
+}
+.yt-video {
+    margin:10px;
 }

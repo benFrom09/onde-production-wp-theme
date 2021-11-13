@@ -16,7 +16,7 @@
 
 get_header();
 ?>
-<main class="page-contact main-content-wrapper">
+<main class="page-contact contact-model main-content-wrapper">
 	<section id="main-content" class="site-main">
 
 		<?php

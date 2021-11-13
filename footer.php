@@ -16,6 +16,7 @@
 	<div class="footer-widget">
 		<?php dynamic_sidebar('footer'); ?>
 	</div>
+	<div class="footer-sep"></div>
 	<div class="site-info">
 		<?php
 		$site_info = get_theme_mod('onde-site-info', '');
