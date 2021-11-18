@@ -7,33 +7,33 @@ use WP_Widget;
 class SocialMediaWidget extends WP_Widget
 {
 
+
     public function __construct()
     {
-        $options = require_once __DIR__ . DIRECTORY_SEPARATOR . 'social_media_icons.php';
-        parent::__construct('social_media_widget', 'social media widget', $options);
+        $icons = require_once __DIR__ . DIRECTORY_SEPARATOR . 'social_media_icons.php';
+
+        parent::__construct('social_media_widget', 'social media widget', $icons);
     }
 
     public function widget($args, $instance)
     {
-        $social_media_name = $instance['social_icons'] ?? '';
-        $social_icon = $this->get_social_icon($social_media_name);
+        $social_media = $instance['social_icon'] ?? '';
+        $icon_img = $this->get_social_icon($social_media);
+        $url = $instance['social_url'] ?? '';
 
-        echo $args['before_widget'];
-        echo '<article id="onde-social-media-widget" class="onde-widget social-media-widget container-flex-sc">';
-        if(isset($instance['social_icons'])) {
-            echo '<img class="onde-widget social-media-icon" src="' . $social_icon . '">';
-        }
-        if(isset($instance['social_url'])) {
-            $url = $instance['social_url'];
-            echo '<a href="' . $url . '" target="_blank">Retrouvez nous sur:' . $social_media_name . '</a>';
-        }
-        echo '</article>';
-        echo $args['after_widget'];
+       if(!is_null($icon_img)) {
+
+        echo '<a class="onde-social-widget" href="' . esc_url($url) . '" title="'. esc_attr($social_media) .'" target="_blank">
+        <img width="20px" height="20px" alt="'. esc_attr(__('Icone résaux social ' . $social_media )) .'" src="'. esc_url($icon_img) .'" title="'. esc_attr(__('Icone résaux social ' . $social_media )) .'" />
+        </a>';
+       }
+
     }
 
     public function form($instance)
     {
         $social_url = $instance['social_url'] ?? '';
+        $social_icon = $instance['social_icon'] ?? '';
         
         ?>
         <p>
@@ -49,9 +49,9 @@ class SocialMediaWidget extends WP_Widget
             >    
         </p>
         <p>
-            <label for="<?= $this->get_field_id('social_icons');?>">Réseaux sociaux</label>
-            <select name="<?= $this->get_field_name('social_icons');?>" id="<?= $this->get_field_id('social_icons');?>">
-                <option value="">--Choisir une icone--</option>
+            <label for="<?= $this->get_field_id('social_icon');?>">Icone réseaux sociaux</label>
+            <select name="<?= $this->get_field_name('social_icon');?>" id="<?= $this->get_field_id('social_icon');?>">
+                <option value="<?= $social_icon!== '' ? esc_attr($social_icon) : '';?>"><?= $social_icon!== '' ? $social_icon : '--Choisir une icone--';?></option>
                 <option value="Facebook">Facebook</option>
                 <option value="Instagram">Instagram</option>
                 <option value="Youtube">Youtube</option>
@@ -68,9 +68,9 @@ class SocialMediaWidget extends WP_Widget
     }
 
     protected function get_social_icon($name):?string {
-        $social_icons = $this->widget_options['social_icons_array'];
+        $social_icons = $this->widget_options;
        foreach($social_icons as $k => $social_icon) {
-           if(strtolower($k) === (strtolower($name) . '_icon')) {
+           if(strtolower($k) === (strtolower($name) . '_img')) {
                $icon = $social_icon;
                return $icon;
            }

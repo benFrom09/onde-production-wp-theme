@@ -6760,11 +6760,13 @@ footer.site-footer a {
     
 }
 @media screen and (min-width:1200px) {
-    footer.site-footer {
-        flex-direction:column;
-       
-    }
     
+}
+
+
+.onde-social-widget img {
+    width:48px;
+    height:auto;
 }
 /*!**************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./assets/css/contact.css ***!

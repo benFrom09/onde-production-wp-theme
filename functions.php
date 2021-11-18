@@ -239,6 +239,33 @@ function onde_production_widgets_init()
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>'
 	));
+	register_sidebar(array(
+		'name'          => esc_html__('Sidebar optv', 'onde-production'),
+		'id'            => 'sidebar-optv',
+		'description'   => '',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>'
+	));
+	register_sidebar(array(
+		'name'          => esc_html__('Sidebar contact', 'onde-production'),
+		'id'            => 'sidebar-contact',
+		'description'   => '',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>'
+	));
+	register_sidebar(array(
+		'name'          => esc_html__('Sidebar nous-aider', 'onde-production'),
+		'id'            => 'sidebar-nous-aider',
+		'description'   => '',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>'
+	));
 }
 add_action('widgets_init', 'onde_production_widgets_init');
 
