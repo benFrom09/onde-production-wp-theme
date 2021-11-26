@@ -70,6 +70,7 @@ if ( ! function_exists( 'onde_production_header_style' ) ) :
 			.site-description {
 				color: #<?php echo esc_attr( $header_text_color ); ?>;
 			}
+			
 		<?php endif; ?>
 		</style>
 		<?php

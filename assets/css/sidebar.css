@@ -62,7 +62,19 @@ footer label {
     padding:0;
     margin-bottom: 0.4rem;
 }
+.sidebar .sub-menu,.site-footer .sub-menu {
+    border:none;
 
+}
+.sidebar .sub-menu li,.site-footer .sub-menu li {
+    background:none;
+}
+.site-footer .sub-menu a {
+    color:#fff;
+} 
+.site-footer .sub-menu a:hover {
+    color:var(--default-dark-color);
+} 
 .widget_media_gallery .gallery {
     display:flex;
     flex-direction:column;
@@ -110,4 +122,19 @@ footer label {
 }
 .yt-video {
     margin:10px;
+}
+
+.product_list_widget {
+    list-style-type: none;
+}
+.product_list_widget li{
+    list-style: none;
+}
+.product_list_widget span.product-title {
+    display:block;
+    margin:10px;
+}
+
+.sidebar .woocommerce-price-suffix {
+    color:var(--default-orange-color);
 }

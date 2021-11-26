@@ -231,6 +231,18 @@ if ( ! function_exists( 'onde_production_woocommerce_header_cart' ) ) {
 		<?php
 	}
 }
+
+
+if(!function_exists('add_other__post_types_support')) {
+
+	function add_other_post_types_support() {
+
+		add_post_type_support( 'post_type', 'woosidebars' );
+	}
+}
+
+add_action('init','add_other_post_types_support');
+
 /*
 /**
  * activete gutemberg block on product page

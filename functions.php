@@ -137,6 +137,49 @@ if (!function_exists('onde_production_setup')) :
 			),
 		) );
 
+		add_theme_support('editor-font-sizes',
+		array(
+			array(
+				'name' => esc_html__('very-small','onde-production'),
+				'shortName' =>'XXS',
+				'size' => 12,
+				'slug' => 'very-small'
+			),
+			array(
+				'name' => esc_html__('small','onde-production'),
+				'shortName' =>'XS',
+				'size' => 14,
+				'slug' => 'small'
+			),
+			array(
+				'name' => esc_html__('normal','onde-production'),
+				'shortName' =>'S',
+				'size' => 16,
+				'slug' => 'normal'
+			),
+			array(
+				'name' => esc_html__('medium','onde-production'),
+				'shortName' =>'M',
+				'size' => 20,
+				'slug' => 'medium'
+			),
+			array(
+				'name' => esc_html__('large','onde-production'),
+				'shortName' =>'L',
+				'size' => 26,
+				'slug' => 'large'
+			),
+			array(
+				'name' => esc_html__('extra-large','onde-production'),
+				'shortName' =>'XL',
+				'size' => 30,
+				'slug' => 'extra-large'
+			),
+			
+		)) ;
+
+		//disable custom font-size
+		add_theme_support('disable-custom-font-sizes');
 			/**
 		 * The embed blocks automatically apply styles to embedded content to reflect the aspect ratio of content that is embedded in an iFrame
 		 */
@@ -266,6 +309,16 @@ function onde_production_widgets_init()
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>'
 	));
+
+	register_sidebar(array(
+		'name'          => esc_html__('Sidebar woocommerce', 'onde-production'),
+		'id'            => 'sidebar-woocommerce',
+		'description'   => '',
+		'before_widget' => '<div id="%1$s" class="widget woocommerce-widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>'
+	));
 }
 add_action('widgets_init', 'onde_production_widgets_init');
 
@@ -299,6 +352,17 @@ function onde_production_scripts()
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
 	}
+
+	//AJAX SCRIPT
+
+	wp_enqueue_script('onde-ajax',get_template_directory_uri() . '/assets/js/modules/ajax.js',array(),_S_VERSION,true);
+
+	//SEND PHP VAR TO JS
+
+	wp_localize_script('onde-ajax','ajaxurl',array(
+		'ajax_url' => admin_url('admin-ajax.php')
+	));
+
 }
 add_action('wp_enqueue_scripts', 'onde_production_scripts');
 
@@ -343,3 +407,40 @@ if (class_exists('WooCommerce')) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
 
+function onde_load_posts() {
+
+	$posts = get_posts();
+	wp_send_json($posts) ;
+	wp_die();
+
+}
+
+add_action( 'wp_ajax_onde_load_posts', 'onde_load_posts' );
+add_action( 'wp_ajax_nopriv_onde_load_posts', 'onde_load_posts' );
+
+/*
+	SEND MAIL
+*/
+
+function onde_php_mailer($phpmailer) {
+	$phpmailer->isSMTP();
+	$phpmailer->SMTPAutoTLS = false;
+	$phpmailer->Host = SMTP_HOST;
+	$phpmailer->SMTPAuth = SMTP_AUTH;
+	$phpmailer->Port = SMTP_PORT;
+	$phpmailer->Username = SMTP_USER;
+	$phpmailer->Password = SMTP_PASS;
+	$phpmailer->SMTPSecure = SMTP_SECURE;
+	$phpmailer->From = SMTP_FROM;
+	$phpmailer->FromName = SMTP_NAME;
+}
+add_action('phpmailer_init','onde_php_mailer');
+/*/
+//Remove Gutenberg Block Library CSS from loading on the frontend
+function onde_remove_wp_block_library_css(){
+    wp_dequeue_style( 'wp-block-library' );
+    wp_dequeue_style( 'wp-block-library-theme' );
+    wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
+} 
+add_action( 'wp_enqueue_scripts', 'onde_remove_wp_block_library_css', 100 );
+*/

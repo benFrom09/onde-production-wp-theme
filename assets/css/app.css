@@ -26,9 +26,7 @@
     background: linear-gradient(90deg, rgba(252,142,69,1) 0%, rgba(244,191,15,1) 34%, rgba(255,153,0,1) 100%);
     border-radius: 10px;
   }
-  ::-webkit-resizer {
-
-  }
+  
 * {
     box-sizing:border-box;
 }
@@ -37,6 +35,25 @@ body {
     color:#fff;
     overflow:auto;
 }
+/**************** overriding guttemberg search form **********************************/
+
+.wp-block-search.aligncenter .wp-block-search__inside-wrapper {
+    margin: auto;
+}
+
+.wp-block-search.wp-block-search__button-inside .wp-block-search__inside-wrapper {
+    padding:unset;
+    border:none!important;
+}
+.wp-block-search.wp-block-search__button-inside .wp-block-search__inside-wrapper .wp-block-search__input {
+    border-radius: 4px!important;
+    border: 1px solid #949494!important;
+    padding: 0.75em 0.5em!important;
+}
+.wp-block-search.wp-block-search__button-inside .wp-block-search__inside-wrapper .wp-block-search__button {
+    padding: 1.2rem!important;
+}
+/***************************************************************************************************/
 strong {
     font-weight:bold;
 }
@@ -55,7 +72,7 @@ h2 {
 
 input {
         display: block;
-       max-width:80%;
+       /*max-width:80%;*/
         padding: calc(0.5em * 1.5) 0.5em;
         color: var(--default-dark-color);
         background: transparent;
@@ -103,15 +120,21 @@ table {
 }
 table th {
     text-align: left;
+    padding:0.5em 0;
 }
 thead {
     font-weight: bold;
+    border-bottom: 1px solid black;
+   
 }
 table caption {
     margin:0.3rem auto;
 }
 .search-field {
     border:1px solid #949494;
+}
+textarea {
+    display:block;
 }
 /*
 .wp-block-search .wp-block-search__inside-wrapper {
@@ -136,6 +159,7 @@ button, .wp-block-search .wp-block-search__button,.search-submit {
     cursor:pointer;
     border-radius: 4px;
     margin:1.2rem 0;
+    border: none;
 }
 button:hover, .wp-block-search .wp-block-search__button:hover,.search-submit:hover {
     color:#fff!important;
@@ -209,6 +233,8 @@ label, .wp-block-search .wp-block-search__label {
     padding: 0.3rem 0;
     font-size:inherit;
 }
+
+
 /*************************************************/
 /*************    Onde-bg    *********************/
 /*************************************************/
@@ -230,6 +256,28 @@ label, .wp-block-search .wp-block-search__label {
 
 p.has-background {
     padding:1.25em 0.8em;
+}
+
+.has-very-small-font-size {
+    font-size:0.75em;
+}
+.has-small-font-size {
+    font-size:0.875em;
+}
+
+.has-normal-font-size {
+    font-size:1em;
+}
+
+.has-medium-font-size {
+    font-size:1.25em;
+}
+.has-large-font-size {
+    font-size:1.625em;
+}
+
+.has-extra-large-font-size {
+    font-size:1.875em;
 }
 
 /**************************************************/
