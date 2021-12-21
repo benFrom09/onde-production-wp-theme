@@ -20,6 +20,9 @@ class YoutubeWidget extends WP_Widget
             $title = apply_filters('widget_title',$instance['title']);
              echo $args['before_title'] .$title . $args['after_title'];
         }
+        if(isset($instance['redirect_link'])) {
+           echo '<p><a href="' . esc_url_raw($instance['redirect_link']) .'">' . $instance['redirect_link_name'] . '</a><p>';
+        }
         echo '<article id="onde-youtube-widget" class="onde-widget youtube-widget container-flex-we">';
         if(isset($instance['youtube'])) {
             require get_template_directory() . '/widgets/YoutubeFeeder.php';
@@ -35,6 +38,8 @@ class YoutubeWidget extends WP_Widget
 
     public function form($instance) {
         $title = $instance['title'] ?? '';
+        $redirect_link = $instance['redirect_link'] ?? '';
+        $redirect_link_name = $instance['redirect_link_name'] ?? '';
         $youtube_id = $instance['youtube'] ?? '';
         $video_number = $instance['video_number'] ?? 1;
         ?>  <p>Ce widget permet de récuperer les dernières publications de votre chaine youtube</p>
@@ -46,6 +51,20 @@ class YoutubeWidget extends WP_Widget
                 id="<?= $this->get_field_id('title');?>"
                 value="<?= esc_attr($title);?>">    
         </p>
+            <p>
+            <label for="<?= $this->get_field_id('redirect_link_name')?>">Nom du lien:</label>
+                <input class="widefat" 
+                type="text" 
+                name="<?=$this->get_field_name('redirect_link_name'); ?>" 
+                id="<?= $this->get_field_id('redirect_link_name');?>"
+                value="<?= esc_attr($redirect_link_name);?>">     
+            <label for="<?= $this->get_field_id('redirect_link')?>">Url du lien:</label>
+                <input class="widefat" 
+                type="text" 
+                name="<?=$this->get_field_name('redirect_link'); ?>" 
+                id="<?= $this->get_field_id('redirect_link');?>"
+                value="<?= esc_attr($redirect_link);?>">    
+            </p>
         <p>
                 <label for="<?= $this->get_field_id('youtube')?>">ID chaine youtube:</label>
                 <input class="widefat" 

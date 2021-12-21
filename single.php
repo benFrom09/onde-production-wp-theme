@@ -25,12 +25,12 @@ get_header();
 					'next_text' => '<span class="nav-subtitle">' . esc_html__('Next:', 'onde-production') . '</span> <span class="nav-title">%title</span>',
 				)
 			);
-
+			/*
 			// If comments are open or we have at least one comment, load up the comment template.
 			if (comments_open() || get_comments_number()) :
 				comments_template();
 			endif;
-
+			*/
 		endwhile; // End of the loop.
 		?>
 		</div><!-- post-container -->
@@ -38,7 +38,12 @@ get_header();
 	<aside id="sidebar-L" class="sidebar">
 		<?php get_sidebar();?>
 	</aside>
-	<aside id="sidebar-R" class="sidebar"></aside>
+	<aside id="sidebar-R" class="sidebar">
+		<?php if(is_active_sidebar('sidebar-right')):
+			dynamic_sidebar('sidebar-right');
+		endif;
+		?>
+	</aside>
 	</main><!-- .main-content-wrapper -->
 <?php
 

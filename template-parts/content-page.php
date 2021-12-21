@@ -11,7 +11,7 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<?php onde_production_post_thumbnail(); ?>
+	<?php onde_production_display_mini_page_title(); ?>
 
 	<div class="entry-content">
 		<?php

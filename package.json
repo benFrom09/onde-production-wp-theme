@@ -5,8 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "NODE_ENV=production webpack",
-    "dev": "webpack --watch",
-    "clean": "rm -rf ./build"
+    "dev": "webpack --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",

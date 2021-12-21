@@ -73,13 +73,14 @@ if ( ! function_exists( 'onde_production_entry_footer' ) ) :
 				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'onde-production' ) . '</span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		}
-
+		/* activate comments link*/
+		/*
 		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 			echo '<span class="comments-link">';
 			comments_popup_link(
 				sprintf(
 					wp_kses(
-						/* translators: %s: post title */
+						// translators: %s: post title 
 						__( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'onde-production' ),
 						array(
 							'span' => array(
@@ -92,7 +93,8 @@ if ( ! function_exists( 'onde_production_entry_footer' ) ) :
 			);
 			echo '</span>';
 		}
-
+		*/
+		//
 		edit_post_link(
 			sprintf(
 				wp_kses(
@@ -125,13 +127,14 @@ if ( ! function_exists( 'onde_production_post_thumbnail' ) ) :
 		}
 
 		if ( is_singular() ) :
+			
 			?>
 
 			<div class="post-thumbnail">
 				<?php the_post_thumbnail(); ?>
 			</div><!-- .post-thumbnail -->
 
-		<?php else : ?>
+		<?php else :?>
 
 			<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
 				<?php
@@ -152,6 +155,16 @@ if ( ! function_exists( 'onde_production_post_thumbnail' ) ) :
 		endif; // End is_singular().
 	}
 endif;
+
+if(!function_exists('onde_production_display_mini_page_title')) {
+
+	function onde_production_display_mini_page_title() {
+		?>
+		<h1 class="mini-title">|<?php single_post_title(); ?>|</h1>
+		<?php
+	}
+}
+
 
 if ( ! function_exists( 'wp_body_open' ) ) :
 	/**

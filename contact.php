@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Template Name: Page contact
  * The template for displaying contact pages
@@ -35,10 +34,9 @@ get_header();
 		endif;  ?>
 	</aside>
 	<aside id="sidebar-R" class="sidebar">
-		<?php if (!is_active_sidebar('sidebar-right')) : ?>
-
-		<?php endif;
-		dynamic_sidebar('sidebar-right');
+		<?php if (is_active_sidebar('sidebar-right')) :
+				dynamic_sidebar('sidebar-right');
+		 endif;
 		?>
 	</aside>
 </main>

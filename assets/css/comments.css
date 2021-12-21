@@ -4,7 +4,10 @@
 
 textarea#comment {
     display:block;
-    max-width:100%
+    max-width:100%;
+    min-width:100%;
+    min-height:265px;
+    margin-bottom: 1.5em;
 }
 .comment-respond h3 {
     text-transform: uppercase;

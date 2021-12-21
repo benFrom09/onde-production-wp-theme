@@ -1,10 +1,25 @@
 /**************************************************************************/
 /***************      BLOG  *******************************/
 /*************************************************************************/
-
+h1.page-title {
+    font-size:36px;
+    text-align:center;
+    background: url(../images/heading-underline.jpg) center bottom no-repeat;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding-top:20px;
+	padding-bottom: 20px !important;
+    margin: 26px 0 26px 0;
+}
+.post-image-wrapper {
+    margin:25px auto;
+    border-radius:4px;
+    overflow:hidden;
+}
 .singular-page.entry-title {
     font-size:2em;
-    padding:1.2rem;
+    padding:1.2rem 0;
+    text-decoration: underline;
 }
 .entry-meta {
     
@@ -17,9 +32,7 @@
 .entry-meta .posted-on,.entry-meta .byline {
     display:block;
     margin-bottom:10px; 
-}
-.post-image-wrapper {
-    margin-bottom:2.5rem;
+    line-height: 1.5em;
 }
 .post-archive-container {
     padding: 1rem;

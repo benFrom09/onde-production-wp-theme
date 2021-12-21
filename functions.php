@@ -8,439 +8,132 @@
  * @package Onde-production
  */
 
+//exit if accessed directly 
+if (!defined('ABSPATH')) {
+	exit;
+}
+//
 if (!defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.
 	define('_S_VERSION', '1.0.0');
 }
 
+//path theme dir constants
 
-if (!function_exists('onde_production_setup')) :
-	/**
-	 * Sets up theme defaults and registers support for various WordPress features.
-	 *
-	 * Note that this function is hooked into the after_setup_theme hook, which
-	 * runs before the init hook. The init hook is too late for some features, such
-	 * as indicating support for post thumbnails.
-	 */
-	function onde_production_setup()
-	{
-		/*
-		 * Make theme available for translation.
-		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on Onde-production, use a find and replace
-		 * to change 'onde-production' to the name of your theme in all the template files.
-		 */
-		load_theme_textdomain('onde-production', get_template_directory() . '/languages');
+define('ONDE_THEME_DIR', get_template_directory());
+define('ONDE_THEME_URI', get_template_directory_uri());
 
-		// Add default posts and comments RSS feed links to head.
-		add_theme_support('automatic-feed-links');
+require_once 'inc/class/Onde_Theme_Class.php';
+require_once 'inc/class/walker/Onde_Nav_Walker.php';
 
-		/*
-		 * Let WordPress manage the document title.
-		 * By adding theme support, we declare that this theme does not use a
-		 * hard-coded <title> tag in the document head, and expect WordPress to
-		 * provide it for us.
-		 */
-		add_theme_support('title-tag');
+new Onde_Theme_Class();
 
-		/*
-		 * Enable support for Post Thumbnails on posts and pages.
-		 *
-		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-		 */
-		add_theme_support('post-thumbnails');
 
-		// This theme uses wp_nav_menu() in one location.
-		register_nav_menus(
-			array(
-				'menu-1' => esc_html__('Primary', 'onde-production'),
-				'menu-2' => esc_html__('Artists', 'onde-production'),
-				'menu-3' => esc_html__('Footer', 'onde-production'),
-			)
-		);
+function onde_load_posts()
+{
 
-		/*
-		 * Switch default core markup for search form, comment form, and comments
-		 * to output valid HTML5.
-		 */
-		add_theme_support(
-			'html5',
-			array(
-				'search-form',
-				'comment-form',
-				'comment-list',
-				'gallery',
-				'caption',
-				'style',
-				'script',
-			)
-		);
+	$posts = get_posts();
+	wp_send_json($posts);
+	wp_die();
+}
 
-		// Set up the WordPress core custom background feature.
-		add_theme_support(
-			'custom-background',
-			apply_filters(
-				'onde_production_custom_background_args',
-				array(
-					'default-color' => 'ffffff',
-					'default-image' => '',
-				)
-			)
-		);
+function onde_is_item_in_menu($menu_slug, string $item_title = ''): bool
+{
 
-		// Add theme support for selective refresh for widgets.
-		add_theme_support('customize-selective-refresh-widgets');
+	$menu_items = array();
 
-		/**
-		 * Add support for core custom logo.
-		 *
-		 * @link https://codex.wordpress.org/Theme_Logo
-		 */
-		add_theme_support(
-			'custom-logo',
-			array(
-				'height'      => 190,
-				'width'       => 800,
-				'flex-width'  => true,
-				'flex-height' => true,
-			)
-		);
+	if (($locations = get_nav_menu_locations()) && isset($locations[$menu_slug])) {
+		$menu = get_term($locations[$menu_slug]);
 
-		/**
-		 * display full screen images in gutemberg 
-		 */
-		add_theme_support('align-wide');
+		$items = wp_get_nav_menu_items($menu->term_id);
 
-		/**
-		 * Custom color palette
-		 */
-		add_theme_support( 'editor-color-palette', array(
-			array(
-				'name'  => esc_attr__( 'onde black', 'onde-production' ),
-				'slug'  => 'onde-black',
-				'color' => '#000',
-			),
-			array(
-				'name'  => esc_attr__( 'onde dark', 'onde-production' ),
-				'slug'  => 'onde-dark',
-				'color' => '#222',
-			),
-			array(
-				'name'  => esc_attr__( 'white', 'onde-production' ),
-				'slug'  => 'white',
-				'color' => '#FFF',
-			),
-			array(
-				'name'  => esc_attr__( 'onde orange', 'onde-production' ),
-				'slug'  => 'onde-orange',
-				'color' => '#FF9900',
-			),
-		) );
-
-		add_theme_support('editor-font-sizes',
-		array(
-			array(
-				'name' => esc_html__('very-small','onde-production'),
-				'shortName' =>'XXS',
-				'size' => 12,
-				'slug' => 'very-small'
-			),
-			array(
-				'name' => esc_html__('small','onde-production'),
-				'shortName' =>'XS',
-				'size' => 14,
-				'slug' => 'small'
-			),
-			array(
-				'name' => esc_html__('normal','onde-production'),
-				'shortName' =>'S',
-				'size' => 16,
-				'slug' => 'normal'
-			),
-			array(
-				'name' => esc_html__('medium','onde-production'),
-				'shortName' =>'M',
-				'size' => 20,
-				'slug' => 'medium'
-			),
-			array(
-				'name' => esc_html__('large','onde-production'),
-				'shortName' =>'L',
-				'size' => 26,
-				'slug' => 'large'
-			),
-			array(
-				'name' => esc_html__('extra-large','onde-production'),
-				'shortName' =>'XL',
-				'size' => 30,
-				'slug' => 'extra-large'
-			),
-			
-		)) ;
-
-		//disable custom font-size
-		add_theme_support('disable-custom-font-sizes');
-			/**
-		 * The embed blocks automatically apply styles to embedded content to reflect the aspect ratio of content that is embedded in an iFrame
-		 */
-		add_theme_support( 'responsive-embeds' );
-
-		remove_theme_support( 'widgets-block-editor' );
-	}
-endif;
-add_action('after_setup_theme', 'onde_production_setup');
-
-if (!function_exists('onde_production_special_nav_class')) :
-
-	/**
-	 * add special classes to navbar
-	 *
-	 * @param array $classes
-	 * @param [type] $item
-	 * @return array
-	 */
-	function onde_production_special_nav_class(array $classes, $item): array
-	{
-
-		if (in_array('current-post-ancestor', $classes) || in_array('current-page-ancestor', $classes) || in_array('current-menu-item', $classes)) {
-
-			$classes[] = 'active';
+		foreach ($items as $item) {
+			$menu_items[] = $item->title;
 		}
-		return $classes;
 	}
 
-endif;
-add_filter('nav_menu_css_class', 'onde_production_special_nav_class', 10, 2);
-
-/**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- */
-function onde_production_content_width()
-{
-	$GLOBALS['content_width'] = apply_filters('onde_production_content_width', 640);
+	return in_array($item_title, $menu_items);
 }
-add_action('after_setup_theme', 'onde_production_content_width', 0);
+// Add styles for admin page
+add_action('admin_head', 'admin_styles');
 
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-
-require_once 'widgets/YoutubeWidget.php';
-require_once 'widgets/SocialMediaWideget.php';
-
-function onde_production_widgets_init()
-{
-	
-	register_widget(Onde\widgets\SocialMediaWidget::class);
-	register_widget(Onde\widgets\YoutubeWidget::class);
-
-
-	register_sidebar(array(
-		'name'          => esc_html__('Sidebar Left', 'onde-production'),
-		'id'            => 'sidebar-left',
-		'description'   => '',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>'
-	));
-	register_sidebar(array(
-		'name'          => esc_html__('Sidebar Right', 'onde-production'),
-		'id'            => 'sidebar-right',
-		'description'   => '',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>'
-	));
-	register_sidebar(array(
-		'name'          => esc_html__('Sidebar Artist', 'onde-production'),
-		'id'            => 'sidebar-artist',
-		'description'   => '',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>'
-	));
-	register_sidebar(array(
-		'name' => __('Footer', 'onde-production'),
-		'id' => 'footer',
-		'description' => ''
-	));
-	register_sidebar(array(
-		'name'          => esc_html__('Sidebar Prestation', 'onde-production'),
-		'id'            => 'sidebar-prestation',
-		'description'   => '',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>'
-	));
-	register_sidebar(array(
-		'name'          => esc_html__('Sidebar optv', 'onde-production'),
-		'id'            => 'sidebar-optv',
-		'description'   => '',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>'
-	));
-	register_sidebar(array(
-		'name'          => esc_html__('Sidebar contact', 'onde-production'),
-		'id'            => 'sidebar-contact',
-		'description'   => '',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>'
-	));
-	register_sidebar(array(
-		'name'          => esc_html__('Sidebar nous-aider', 'onde-production'),
-		'id'            => 'sidebar-nous-aider',
-		'description'   => '',
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>'
-	));
-
-	register_sidebar(array(
-		'name'          => esc_html__('Sidebar woocommerce', 'onde-production'),
-		'id'            => 'sidebar-woocommerce',
-		'description'   => '',
-		'before_widget' => '<div id="%1$s" class="widget woocommerce-widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>'
-	));
+function admin_styles() {
+    echo '<link rel="stylesheet" href="' . get_stylesheet_directory_uri() . '/custom-editor-style.css" type="text/css" media="all" />';
 }
-add_action('widgets_init', 'onde_production_widgets_init');
+function generate_404()
+{
+	global $wp_query;
+	$wp_query->set_404();
+	status_header(404);
+}
+
 
 /**
- * custom login page
+ * send 404 page not found to boutique panier commandes if woocommerce is not activated
  *
  * @return void
  */
-function onde_production_login_logo () {
-
-	wp_enqueue_style(
-		'custom-login',
-		get_template_directory_uri() . '/custom-login.css',
-		array('login')
-	);
-}
-
-add_action('login_enqueue_scripts','onde_production_login_logo');
-
-/**
- * Enqueue scripts and styles.
- */
-function onde_production_scripts()
+function onde_shop_link_send_404_if_wc_not_activated()
 {
-	wp_enqueue_style('onde-production-style', get_stylesheet_uri(), array(), _S_VERSION);
-	wp_style_add_data('onde-production-style', 'rtl', 'replace');
-	wp_enqueue_style('onde-production-main-style', get_template_directory_uri() . '/build/css/main.css', array(), _S_VERSION);
-	$id = uniqid();
-	wp_enqueue_script('onde-production-js', get_template_directory_uri() . "/build/js/app.js?random=$id", array(), _S_VERSION, true);
 
-	if (is_singular() && comments_open() && get_option('thread_comments')) {
-		wp_enqueue_script('comment-reply');
+	if (!ONDE_WOOCOMMERCE_ACTIVE) {
+
+		global $wp_query;
+		
+		$page = $wp_query->queried_object ? intval($wp_query->queried_object->ID): null;
+		
+		if ($page === 117 || $page === 118 || $page === 119 || $page === 120) {
+			$wp_query->set_404();
+			status_header(404);
+		}
+	} else {
+		return;
 	}
-
-	//AJAX SCRIPT
-
-	wp_enqueue_script('onde-ajax',get_template_directory_uri() . '/assets/js/modules/ajax.js',array(),_S_VERSION,true);
-
-	//SEND PHP VAR TO JS
-
-	wp_localize_script('onde-ajax','ajaxurl',array(
-		'ajax_url' => admin_url('admin-ajax.php')
-	));
-
 }
-add_action('wp_enqueue_scripts', 'onde_production_scripts');
-
+add_action('template_redirect', 'onde_shop_link_send_404_if_wc_not_activated');
 /**
- * Implement the Custom Header feature.
+ * Filter the upload size limit for non-administrators.
+ *
+ * @param string $size Upload size limit (in bytes).
+ * @return int (maybe) Filtered size limit.
  */
-//require get_template_directory() . '/inc/custom-header.php';
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-require get_template_directory() . '/inc/template-functions.php';
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
-
-
-
-require get_template_directory() . '/inc/add-font-uri.php';
-
-
-require get_template_directory() . '/inc/style.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-if (defined('JETPACK__VERSION')) {
-	require get_template_directory() . '/inc/jetpack.php';
+function filter_site_upload_size_limit($size)
+{
+	// Set the upload size limit to 10 MB for users lacking the 'manage_options' capability.
+	if (current_user_can('manage_options')) {
+		// 10 MB.
+		$size = 1024 * 10000;
+	}
+	return $size;
+}
+function onde_add_favicon() {
+	echo '<link rel="shortcut icon" type="image/x-icon" href="'.get_template_directory_uri().'/assets/favicon_io/favicon.ico" />';
 }
 
-/**
- * Load WooCommerce compatibility file.
- */
-if (class_exists('WooCommerce')) {
-	require get_template_directory() . '/inc/woocommerce.php';
-}
+add_action('wp_head', 'onde_add_favicon');
 
-function onde_load_posts() {
+//add_filter( 'upload_size_limit', 'filter_site_upload_size_limit', 20 );
+add_action('wp_ajax_onde_load_posts', 'onde_load_posts');
+add_action('wp_ajax_nopriv_onde_load_posts', 'onde_load_posts');
 
-	$posts = get_posts();
-	wp_send_json($posts) ;
-	wp_die();
-
-}
-
-add_action( 'wp_ajax_onde_load_posts', 'onde_load_posts' );
-add_action( 'wp_ajax_nopriv_onde_load_posts', 'onde_load_posts' );
-
-/*
-	SEND MAIL
-*/
-
-function onde_php_mailer($phpmailer) {
-	$phpmailer->isSMTP();
-	$phpmailer->SMTPAutoTLS = false;
-	$phpmailer->Host = SMTP_HOST;
-	$phpmailer->SMTPAuth = SMTP_AUTH;
-	$phpmailer->Port = SMTP_PORT;
-	$phpmailer->Username = SMTP_USER;
-	$phpmailer->Password = SMTP_PASS;
-	$phpmailer->SMTPSecure = SMTP_SECURE;
-	$phpmailer->From = SMTP_FROM;
-	$phpmailer->FromName = SMTP_NAME;
-}
-add_action('phpmailer_init','onde_php_mailer');
-/*/
-//Remove Gutenberg Block Library CSS from loading on the frontend
-function onde_remove_wp_block_library_css(){
-    wp_dequeue_style( 'wp-block-library' );
-    wp_dequeue_style( 'wp-block-library-theme' );
-    wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
-} 
-add_action( 'wp_enqueue_scripts', 'onde_remove_wp_block_library_css', 100 );
-*/
+add_filter('wp_nav_menu_objects',function($sorted_menu_obj,$args) {
+	if(!ONDE_WOOCOMMERCE_ACTIVE) {
+		foreach($sorted_menu_obj as $key => $menu_object) {
+			if(intval($menu_object->object_id) === 117) {
+				unset($sorted_menu_obj[$key]);
+			}
+			if(intval($menu_object->object_id) === 118) {
+				unset($sorted_menu_obj[$key]);
+			}
+			if(intval($menu_object->object_id) === 119) {
+				unset($sorted_menu_obj[$key]);
+			}
+			if(intval($menu_object->object_id) === 120) {
+				unset($sorted_menu_obj[$key]);
+			}
+			
+		}
+	}
+	
+	return $sorted_menu_obj;
+},10,2);

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The header for our theme
  *
@@ -22,7 +21,9 @@
 	<?php wp_head(); ?>
 	<style>
 		h1,h2 {
-			color:<?= get_theme_mod('onde-heading-color','#3c434a');?>;
+			font-family:<?= get_theme_mod('onde-site-title-font','Marcellus');?>;
+		}
+		.menu-item a {
 			font-family:<?= get_theme_mod('onde-site-title-font','Marcellus');?>;
 		}
 	</style>

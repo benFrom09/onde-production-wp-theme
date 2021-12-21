@@ -1,0 +1,4 @@
+/* Override TEC style affecting Template drop-down in Page Settings admin panel */
+.css-1wkpk1y-Flex-ItemsColumn {
+    height: auto !important;
+}

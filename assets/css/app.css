@@ -35,6 +35,11 @@ body {
     color:#fff;
     overflow:auto;
 }
+
+
+ul {
+    margin: 0 0 1.5em 3em;
+}
 /**************** overriding guttemberg search form **********************************/
 
 .wp-block-search.aligncenter .wp-block-search__inside-wrapper {
@@ -80,6 +85,9 @@ input {
         line-height: 1.15;
         margin: 0;
 }
+input,textarea {
+    border:3px solid;
+}
 a {
     text-decoration:none;
     color:var(--default-orange-color);
@@ -87,7 +95,7 @@ a {
 
 li {
     margin:1rem auto;
-    list-style:inside;
+    list-style:disc;
 }
 hr {
     margin: 0 auto;
@@ -117,15 +125,43 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     line-height: 1.2rem;
+    margin: 25px 0;
+    font-size: 0.9em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+thead tr {
+    color: #ffffff;
+    text-align: left;
 }
 table th {
     text-align: left;
     padding:0.5em 0;
 }
+th,td {
+    padding: 12px 15px;
+}
+
+td a,td a span {
+    display:block;
+}
+
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+tbody tr:first-of-type {
+    border-top:2px solid var(--default-orange-color);
+}
+tbody tr:last-of-type {
+    border-bottom: 2px solid var(--default-orange-color);
+}
+
 thead {
     font-weight: bold;
     border-bottom: 1px solid black;
-   
 }
 table caption {
     margin:0.3rem auto;
@@ -136,17 +172,13 @@ table caption {
 textarea {
     display:block;
 }
-/*
-.wp-block-search .wp-block-search__inside-wrapper {
-    display: flex;
-    flex: auto;
-    flex-wrap: wrap;
-    max-width: 100%;
-}
-*/
+
 .wp-block-search .wp-block-search__inside-wrapper {
     display: block;
    
+}
+h1.has-background, h2.has-background, h3.has-background, h4.has-background, h5.has-background, h6.has-background {
+    padding:14px;
 }
 /******************************************************/
 /****************   BUTTON   **************************/
@@ -159,7 +191,11 @@ button, .wp-block-search .wp-block-search__button,.search-submit {
     cursor:pointer;
     border-radius: 4px;
     margin:1.2rem 0;
-    border: none;
+    border: 1px solid var(--default-orange-color);
+    font-family: inherit;
+}
+article.status-publish .wp-block-search .wp-block-search__button {
+    border:none;
 }
 button:hover, .wp-block-search .wp-block-search__button:hover,.search-submit:hover {
     color:#fff!important;
@@ -177,14 +213,23 @@ button:hover, .wp-block-search .wp-block-search__button:hover,.search-submit:hov
     grid-template-columns: 50% 1fr;
     grid-template-rows: auto;
     margin-bottom:2.5em;
+    margin-top:2.5em;
 }
-.wp-block-media-text__content p {
+
+
+.wp-block-media-text .wp-block-media-text__content p{
     margin:0;
 }
+
 .wp-block-media-text__content h3 {
     margin-bottom: 1.5em;
     margin-top: 1.5em;
 }
+
+.wp-block-image {
+    margin:3em auto;
+}
+
 .wp-block-media-text .wp-block-media-text__media {
     grid-column: 1;
     grid-row: 1;
@@ -203,8 +248,8 @@ pre.wp-block-verse {
 ul.wp-block-rss  {
     list-style-type: none;
 }
-ul.wp-block-rss li  {
-    list-style: none;
+ul.wp-block-rss a {
+    text-decoration: underline;
 }
 li.widget_block {
     list-style: inside;
@@ -234,28 +279,37 @@ label, .wp-block-search .wp-block-search__label {
     font-size:inherit;
 }
 
-
+.wp-block-table.aligncenter {
+    margin: auto;
+}
 /*************************************************/
 /*************    Onde-bg    *********************/
 /*************************************************/
+/*
 .has-onde-dark-background-color,.has-background {
     margin:1.2rem auto;
     
 }
+*/
 .has-onde-dark-background-color {
     background-color:var(--default-dark-color);
     border-radius:5px;
 }
 .has-onde-orange-background-color {
     background-color:var(--default-orange-color);
+    border:3px solid var(--default-dark-color);
 }
 
-.has-onde-black-background-color {
+.has-onde-black-background-color{
     background-color:#000;
+    border-radius:4px;
 }
-
+.has-onde-black-background-color:not(.front-page .has-onde-black-background-color) {
+    border-left:4px solid var(--default-orange-color);
+}
 p.has-background {
     padding:1.25em 0.8em;
+    border-radius: 4px;
 }
 
 .has-very-small-font-size {
@@ -279,17 +333,27 @@ p.has-background {
 .has-extra-large-font-size {
     font-size:1.875em;
 }
-
+.blocks-gallery-item figure {
+    box-shadow:var(--onde-light-box-shadow);
+}
 /**************************************************/
 
-
-
+.wp-block-media-text__media img {
+    box-shadow: var(--onde-light-box-shadow);
+    display: block;
+    border-radius: 4px
+}
+.front-page  .wp-block-media-text__media img {
+    border:3px solid var(--default-orange-color);
+}
 @media screen and (min-width:0) and (max-width:1280px) {
 
     .has-onde-dark-background-color,.has-background,ul.has-background {
         padding:14px;
     }
-    
+    ul.has-background,#front-page-content-post ul {
+        margin:auto 25px;
+    }
     .wp-block-media-text {
         display:block;
         padding:14px;
@@ -314,7 +378,10 @@ p.has-normal-font-size img, p img {
     position:relative;
     top:0.5em;
 }
-
+.entry-content,.posts-container {
+    max-width:900px;
+    margin:auto;
+}
 .entry-footer {
     padding:2em 0;
 }
@@ -339,14 +406,17 @@ p.has-normal-font-size img, p img {
     padding-bottom:1rem;
 }
 .edit-link {
-    background: #222;
+    background: var(--default-dark-color);
     padding: 10px 15px;
     border-radius: 4px;
     text-transform: uppercase;
+    opacity:0.85;
+    cursor:pointer;
 }
 
-.edit-link a:hover {
-    color:#fff;
+.edit-link:hover {
+    background-color: black;
+    opacity:1;
 }
 /*****************************************************************************/
 /***************************       SELECT        ****************************/
@@ -398,6 +468,11 @@ select {
     width:250px;
 }
 
+.mini-title {
+    font-size:0.8em;
+    color:rgba(0, 0, 0, 0.74);
+    margin-bottom:2em;
+}
 .page-default .widgets-icons {
     
     position:sticky;
@@ -496,7 +571,7 @@ select {
      top:0;
      width:100%;
      height: 100%;
-     background: #00000040;;
+     background: #00000077;;
  }
  
  .parallax-container .slide {

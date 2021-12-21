@@ -4,3 +4,10 @@ readme.txt
 assets/images
 build/js/images
 languages
+
+/vendor/
+assets/css
+assets/favicon_io
+assets/images
+tests
+

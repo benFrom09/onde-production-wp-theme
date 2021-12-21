@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The template for displaying archive pages
  *
@@ -48,7 +47,13 @@ get_header();
 	<aside id="sidebar-L" class="sidebar">
 		<?php get_sidebar();?>
 	</aside>
-	<aside id="sidebar-R" class="sidebar"></aside>
+	<aside id="sidebar-R" class="sidebar">
+		<?php 
+			if(is_active_sidebar('sidebar-right')):
+				dynamic_sidebar('sidebar-right');
+			endif;
+		?>
+	</aside>
 	</main>
 <?php
 

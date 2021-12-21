@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The template for displaying all pages
  *
@@ -41,10 +40,9 @@ get_header();
 		?>
 	</aside>
 	<aside id="sidebar-R" class="sidebar">
-		<?php if (!is_active_sidebar('sidebar-right')) : ?>
-
-		<?php endif;
-		dynamic_sidebar('sidebar-right');
+		<?php if (is_active_sidebar('sidebar-right')) : 
+			dynamic_sidebar('sidebar-right');
+		endif;
 		?>
 	</aside>
 </main>

@@ -1,5 +1,5 @@
 <div class="site-branding">
-    <div class="header-image" style="background-image:url(<?= esc_url(get_template_directory_uri() . '/assets/images/default-header-custom-image.png') ?>)">
+    <div class="header-image" style="background-image:url(<?= esc_url(get_template_directory_uri() . '/assets/images/default-header-custom-image.jpg') ?>)">
         <!--<img src="--><?php /* esc_url(get_template_directory_uri() . '/assets/images/default-header-custom-image.png') */?><!--" alt="">-->
     </div>
 

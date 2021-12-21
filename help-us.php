@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Template Name : Page nous-aider
  *
@@ -10,7 +9,7 @@
 
 get_header();
 ?>
-<main class="page-default default-model main-content-wrapper">
+<main class="page-default help-us-model default-model main-content-wrapper">
     <section id="main-content" class="site-main">
 
         <?php
@@ -19,10 +18,6 @@ get_header();
 
             get_template_part('template-parts/content', 'page');
 
-            // If comments are open or we have at least one comment, load up the comment template.
-            if (comments_open() || get_comments_number()) :
-                comments_template();
-            endif;
 
         endwhile; // End of the loop.
         ?>
@@ -36,10 +31,9 @@ get_header();
         ?>
     </aside>
     <aside id="sidebar-R" class="sidebar">
-        <?php if (!is_active_sidebar('sidebar-right')) : ?>
-
-        <?php endif;
-        dynamic_sidebar('sidebar-right');
+        <?php if (!is_active_sidebar('sidebar-right')) :
+                dynamic_sidebar('sidebar-right');
+                endif;
         ?>
     </aside>
 </main>

@@ -24,7 +24,7 @@ class SocialMediaWidget extends WP_Widget
        if(!is_null($icon_img)) {
 
         echo '<a class="onde-social-widget" href="' . esc_url($url) . '" title="'. esc_attr($social_media) .'" target="_blank">
-        <img width="20px" height="20px" alt="'. esc_attr(__('Icone résaux social ' . $social_media )) .'" src="'. esc_url($icon_img) .'" title="'. esc_attr(__('Icone résaux social ' . $social_media )) .'" />
+        <img width="20px" height="20px" alt="'. esc_attr(__('Media social icon ' . $social_media,'onde-production')) .'" src="'. esc_url($icon_img) .'" title="'. esc_attr(__('Media social icon ' . $social_media,'onde-production' )) .'" />
         </a>';
        }
 
@@ -37,7 +37,7 @@ class SocialMediaWidget extends WP_Widget
         
         ?>
         <p>
-            Ce widget permet d'inserer un lien vers vos reseaux sociaux
+            <?= __("Insert a media social Link with an icon","onde-production"); ?>
         </p>
         <p>
             <label for="<?= $this->get_field_id('social_url')?>">url</label>
@@ -49,9 +49,9 @@ class SocialMediaWidget extends WP_Widget
             >    
         </p>
         <p>
-            <label for="<?= $this->get_field_id('social_icon');?>">Icone réseaux sociaux</label>
+            <label for="<?= $this->get_field_id('social_icon');?>"><?=__('Media social icon','onde-production'); ?></label>
             <select name="<?= $this->get_field_name('social_icon');?>" id="<?= $this->get_field_id('social_icon');?>">
-                <option value="<?= $social_icon!== '' ? esc_attr($social_icon) : '';?>"><?= $social_icon!== '' ? $social_icon : '--Choisir une icone--';?></option>
+                <option value="<?= $social_icon!== '' ? esc_attr($social_icon) : '';?>"><?= $social_icon!== '' ? $social_icon : __('--Choose an icon--','onde-production');?></option>
                 <option value="Facebook">Facebook</option>
                 <option value="Instagram">Instagram</option>
                 <option value="Youtube">Youtube</option>

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The template for displaying the footer
  *
@@ -14,8 +13,18 @@
 
 <footer id="colophon" class="site-footer">
 	<div class="footer-widget">
-		<?php dynamic_sidebar('footer'); ?>
+		<div class="f-widget-container">
+			<?php dynamic_sidebar('footer-widget'); ?>	
 	</div>
+	<?php
+		wp_nav_menu(
+            array(
+                'theme_location' => 'menu-3',
+                'menu_id'        => 'footer-menu',
+                'container' => '',
+            )
+        );
+	?>
 	<div class="site-info">
 		<?php
 		$site_info = get_theme_mod('onde-site-info', '');

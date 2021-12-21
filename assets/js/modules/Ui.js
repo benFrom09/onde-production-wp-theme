@@ -22,7 +22,8 @@ export const Ui = {
     onde_header_image:document.querySelector('.header-image'),
     onde_main_content_wrapper:document.querySelector('.main-content-wrapper'),
     onde_menu_toggle_btn:document.querySelector('#main-menu-toggle'),
-
+    onde_sub_menu_container:document.querySelector('#primary-menu .menu-item-has-children'),
+    onde_sub_menu_arrow_btn:document.querySelectorAll('#primary-menu .sub-menu-arrow-btn'),
     /**
      * LEFT-SIDEBAR
      */
@@ -33,6 +34,17 @@ export const Ui = {
 
     onde_site_branding_animated_elements:document.querySelectorAll('.ml12'),
 
+
+
+    /**
+     * e-commerce btn qty add 
+     */
+
+    onde_wc_qty_btn:document.querySelectorAll('input.input-text.qty'),
+    /**
+     * cart updete btn
+     */
+    onde_wc_cart_update_btn:document.querySelector('button[name="update_cart"]'),
     /**
      * RESPONSIVE SECTION
      */

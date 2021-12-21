@@ -1,0 +1,15 @@
+{
+    "name": "ben09/onde-production",
+    "authors": [
+        {
+            "name": "benFrom09",
+            "email": "ben09.dev@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "test":"vendor/bin/phpunit"
+    }
+}

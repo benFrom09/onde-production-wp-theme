@@ -14,7 +14,7 @@ export function parallaxBackgroundSize() {
         let top = 0;
         onde_front_page_parallax_container.style.height = height + 'px';
         onde_front_page_slides.forEach((slide,k) => {
-            slide.style.height = slide_height  + 'px';
+            slide.style.height = slide_height + 'px';
             slide.style.top = top + 'px';
             size.pos[`slide${k + 1}`] = top;
             size.slide_size = slide_height;

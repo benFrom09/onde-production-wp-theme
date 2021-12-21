@@ -44,6 +44,7 @@ function onde_production_customize_register( $wp_customize ) {
 	));
 	//add setting to customize background
 	//header
+	/*
 	$wp_customize->add_setting('onde-header-background',array(
 		'default' => '#FF9900',
 		'sanitize_callback' => 'sanitize_hex_color',
@@ -128,7 +129,7 @@ function onde_production_customize_register( $wp_customize ) {
         'label' => esc_html__('Hover menu font color','onde-production'),
 
     ]));
-
+	*/
 	//add new sections 
 	//footer
 	$wp_customize->add_section('onde-footer-options',array(

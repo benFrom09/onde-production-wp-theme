@@ -14,10 +14,7 @@ li.widget_block.widget_search {
 footer label {
     color:var(--default-dark-color);
 }
-.sidebar input,footer input, .sidebar  .wp-block-search .wp-block-search__input {
-    color:#fff;
-    border: 1px solid #fff;
-}
+
 
 .sidebar label,.sidebar .wp-block-search .wp-block-search__label {
   color:var(--default-orange-color);
@@ -94,14 +91,39 @@ footer label {
 	color:#fff;
     font-size: 0.8em;
 }
-
-.sidebar .menu-item  a:hover {
+.sidebar input {
+    color:#fff;
+}
+.sidebar .menu-item a:hover {
 	color:var(--default-orange-color);
 }
+
+
+.widget .menu-item.active a:not(.sub-menu .active a) {
+    color:var(--default-orange-color);
+}
+
+    
+
 
 /*********************************************************/
 /*********************  WIDGETS  *************************/
 /*********************************************************/
+
+.widget ul.menu {
+    margin:0.2em 0.2em;
+}
+
+.widget ul.sub-menu {
+    margin:0 0.5em 0 1.2em;
+}
+.widget ul.sub-menu li {
+    list-style:disc;
+    color:var(--default-orange-color);
+}
+.widget ul.sub-menu li a {
+    font-size:0.7em;
+}
 .widget_social_media_widget {
     list-style:none;
 }
@@ -137,4 +159,9 @@ footer label {
 
 .sidebar .woocommerce-price-suffix {
     color:var(--default-orange-color);
+}
+
+.sidebar .menu-artistes-container {
+    max-height: 500px;
+    overflow: auto;
 }

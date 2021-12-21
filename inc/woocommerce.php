@@ -233,7 +233,7 @@ if ( ! function_exists( 'onde_production_woocommerce_header_cart' ) ) {
 }
 
 
-if(!function_exists('add_other__post_types_support')) {
+if(!function_exists('add_other_post_types_support')) {
 
 	function add_other_post_types_support() {
 
