@@ -15,8 +15,8 @@
 			if(get_theme_mod('onde-site-title-font')) {
 				$font = get_theme_mod('onde-site-title-font','Marcellus');
 			}
-		if(!is_front_page()):
-			the_title( '<h1 class="entry-title .title" style="font-family:'. $font . ';">', '</h1>' );
+		if(is_front_page()):
+			the_title( '<h1 class="entry-title title screen-reader-text" style="font-family:'. $font . ';">', '</h1>' );
 		endif;
 		 ?>
 	</header><!-- .entry-header -->

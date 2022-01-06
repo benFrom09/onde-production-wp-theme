@@ -673,6 +673,13 @@ table.variations td.value .reset-variations {
 .woocommerce-error {
     background-color: #fff;
 }
+.woocommerce-message,.woocommerce-error,.woocommerce-info {
+    line-height: 1.5em;
+}
+
+.woocommerce-message a,.woocommerce-error a,.woocommerce-info a {
+    display:block;
+}
 .woocommerce-message {
     border-top-color: var(--default-orange-color)!important;
     background-color: #fff;
@@ -995,4 +1002,30 @@ nav.woocommerce-pagination ul.page-numbers li:last-child {
 .woocommerce .woocommerce-form-login .woocommerce-form-login__submit {
     float: none;
     margin-right: 1em;
+}
+
+/* facturation adrr */
+header.woocommerce-Address-title.title {
+    display:flex;
+    flex-direction: column;
+}
+
+header.woocommerce-Address-title.title a.edit {
+    width: 150px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.woocommerce-account .addresses .title .edit {
+    margin-bottom: 10px;
+    padding: 0.5em;
+    background: var(--default-dark-color);
+    border-radius: 4px;
+}
+
+/* download page btn adjust */
+
+.woocommerce-Message a.woocommerce-Button {
+    float:none;
+    display:block;
 }

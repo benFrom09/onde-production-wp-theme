@@ -70,3 +70,40 @@ table {
 	border-spacing: 0;
 }
 
+.error-404 .search-form {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+    padding: 1em;
+    flex-wrap: wrap;
+}
+.error-404 .onde-404-message {
+	padding:1.8em;
+	color:#ff9900;
+	font-size:1.55em;
+}
+.error-404 .search-form label {
+	margin:0;
+}
+
+.error-404 .search-form .search-submit {
+
+	margin-left :1em;
+	border:none;
+}
+
+.error-404  li{
+	list-style:none;
+}
+.error-404 ul {
+	margin:0;
+}
+.error-404 .widget_categories,.error-404 .widget-list-pages {
+	margin-top:2.8em;
+}
+
+.error-404 .widget_categories .widget-title::after, .error-404 .widget-list-pages .widget-title::after{
+	width:100px;
+	margin:0.7em auto;
+}

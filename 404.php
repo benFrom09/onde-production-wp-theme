@@ -17,18 +17,22 @@ get_header();
 				<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'onde-production' ); ?></h1>
 			</header><!-- .page-header -->
 
-			<div class="page-content">
-				<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'onde-production' ); ?></p>
+			<div class="page-content has-text-align-center">
+				<p class="onde-404-message"><strong><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'onde-production' ); ?></strong></p>
 
 					<?php
 					get_search_form();
-
-					the_widget( 'WP_Widget_Recent_Posts' );
 					?>
-
+					<div class="widget-list-pages">
+						<h2 class="widget-title"><?php esc_html_e( 'Pages', 'onde-production' ); ?></h2>
+						<?php wp_list_pages(array(
+							'depth' => 0,
+							'title_li' => ''
+						)); ?>
+					</div>
 					<div class="widget widget_categories">
 						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'onde-production' ); ?></h2>
-						<ul>
+						<ul style="list-style-type:none;">
 							<?php
 							wp_list_categories(
 								array(
@@ -47,7 +51,7 @@ get_header();
 					/* translators: %1$s: smiley */
 					$onde_production_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'onde-production' ), convert_smilies( ':)' ) ) . '</p>';
 					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$onde_production_archive_content" );
-
+					the_widget( 'WP_Widget_Recent_Posts' );	
 					the_widget( 'WP_Widget_Tag_Cloud' );
 					?>
 

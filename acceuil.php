@@ -4,10 +4,6 @@
  */
 get_header();
 ?>
-<!--
-<div class="loader">
-	<div class="spinner"></div>
-</div> -->
 <main class="front-page home-model main-content-wrapper">
 <section class="parallax-container site-main">
 	<div id="slide1" class="slide">

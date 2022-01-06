@@ -114,7 +114,7 @@ class Onde_Theme_Class
             require_once $dir . '/inc/class/woocommerce/Woocommerce_Setup_Class.php';
 
             new Woocommerce_Setup_Class();
-            //require_once $dir . '/inc/woocommerce.php';
+            
         }
 
         /**

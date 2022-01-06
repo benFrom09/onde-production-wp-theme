@@ -197,7 +197,7 @@ button, .wp-block-search .wp-block-search__button,.search-submit {
 article.status-publish .wp-block-search .wp-block-search__button {
     border:none;
 }
-button:hover, .wp-block-search .wp-block-search__button:hover,.search-submit:hover {
+button:not(.mejs-button button):hover, .wp-block-search .wp-block-search__button:hover,.search-submit:hover {
     color:#fff!important;
     transition:color 0.1s ease;
     background: var(--default-orange-color);

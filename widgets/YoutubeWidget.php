@@ -21,7 +21,7 @@ class YoutubeWidget extends WP_Widget
              echo $args['before_title'] .$title . $args['after_title'];
         }
         if(isset($instance['redirect_link'])) {
-           echo '<p><a href="' . esc_url_raw($instance['redirect_link']) .'">' . $instance['redirect_link_name'] . '</a><p>';
+           echo '<p><a target="_blank" href="' . esc_url_raw($instance['redirect_link']) .'">' . $instance['redirect_link_name'] . '</a><p>';
         }
         echo '<article id="onde-youtube-widget" class="onde-widget youtube-widget container-flex-we">';
         if(isset($instance['youtube'])) {

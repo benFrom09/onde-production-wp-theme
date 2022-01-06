@@ -17,7 +17,7 @@ class SocialMediaWidget extends WP_Widget
 
     public function widget($args, $instance)
     {
-        $social_media = $instance['social_icon'] ?? '';
+        $social_media = $instance['social_icon'] ?? '';   
         $icon_img = $this->get_social_icon($social_media);
         $url = $instance['social_url'] ?? '';
 
@@ -68,13 +68,15 @@ class SocialMediaWidget extends WP_Widget
     }
 
     protected function get_social_icon($name):?string {
-        $social_icons = $this->widget_options;
-       foreach($social_icons as $k => $social_icon) {
-           if(strtolower($k) === (strtolower($name) . '_img')) {
-               $icon = $social_icon;
-               return $icon;
-           }
-           
-       }
+        if($name !== '' || !is_null($name)) {
+            $social_icons = $this->widget_options;
+            foreach($social_icons as $k => $social_icon) {    
+                 if(strtolower($k) === (strtolower($name) . '_img')) {
+                     $icon = $social_icon;
+                     return $icon;
+                } 
+            }
+        }
+        return null;
     }
 }

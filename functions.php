@@ -28,44 +28,70 @@ require_once 'inc/class/walker/Onde_Nav_Walker.php';
 
 new Onde_Theme_Class();
 
-
-function onde_load_posts()
-{
-
-	$posts = get_posts();
-	wp_send_json($posts);
-	wp_die();
-}
-
-function onde_is_item_in_menu($menu_slug, string $item_title = ''): bool
-{
-
-	$menu_items = array();
-
-	if (($locations = get_nav_menu_locations()) && isset($locations[$menu_slug])) {
-		$menu = get_term($locations[$menu_slug]);
-
-		$items = wp_get_nav_menu_items($menu->term_id);
-
-		foreach ($items as $item) {
-			$menu_items[] = $item->title;
-		}
+/**
+ * send posts ajax 
+ */
+if (!function_exists('onde_load_posts')) {
+	function onde_load_posts()
+	{
+		$posts = get_posts();
+		wp_send_json($posts);
+		wp_die();
 	}
-
-	return in_array($item_title, $menu_items);
 }
+
+if (!function_exists('onde_is_item_in_menu')) {
+	/**
+	 * Check if a menu contain specific item
+	 *
+	 * @param [type] $menu_slug
+	 * @param string $item_title
+	 * @return boolean
+	 */
+	function onde_is_item_in_menu($menu_slug, string $item_title = ''): bool
+	{
+
+		$menu_items = array();
+
+		if (($locations = get_nav_menu_locations()) && isset($locations[$menu_slug])) {
+			$menu = get_term($locations[$menu_slug]);
+			if ($menu->errors) return false;
+
+			$items = wp_get_nav_menu_items($menu->term_id);
+
+			foreach ($items as $item) {
+				$menu_items[] = $item->title;
+			}
+		}
+
+		return in_array($item_title, $menu_items);
+	}
+}
+
 // Add styles for admin page
 add_action('admin_head', 'admin_styles');
 
-function admin_styles() {
-    echo '<link rel="stylesheet" href="' . get_stylesheet_directory_uri() . '/custom-editor-style.css" type="text/css" media="all" />';
+if (!function_exists('admin_styles')) {
+	/**
+	 * Undocumented function
+	 *
+	 * @return void
+	 */
+	function admin_styles()
+	{
+		echo '<link rel="stylesheet" href="' . get_stylesheet_directory_uri() . '/custom-editor-style.css" type="text/css" media="all" />';
+	}
 }
-function generate_404()
-{
-	global $wp_query;
-	$wp_query->set_404();
-	status_header(404);
+
+if (!function_exists('generate_404')) {
+	function generate_404()
+	{
+		global $wp_query;
+		$wp_query->set_404();
+		status_header(404);
+	}
 }
+
 
 
 /**
@@ -73,15 +99,16 @@ function generate_404()
  *
  * @return void
  */
+
 function onde_shop_link_send_404_if_wc_not_activated()
 {
 
 	if (!ONDE_WOOCOMMERCE_ACTIVE) {
 
 		global $wp_query;
-		
-		$page = $wp_query->queried_object ? intval($wp_query->queried_object->ID): null;
-		
+
+		$page = $wp_query->queried_object ? intval($wp_query->queried_object->ID) : null;
+
 		if ($page === 117 || $page === 118 || $page === 119 || $page === 120) {
 			$wp_query->set_404();
 			status_header(404);
@@ -90,6 +117,8 @@ function onde_shop_link_send_404_if_wc_not_activated()
 		return;
 	}
 }
+
+
 add_action('template_redirect', 'onde_shop_link_send_404_if_wc_not_activated');
 /**
  * Filter the upload size limit for non-administrators.
@@ -106,8 +135,9 @@ function filter_site_upload_size_limit($size)
 	}
 	return $size;
 }
-function onde_add_favicon() {
-	echo '<link rel="shortcut icon" type="image/x-icon" href="'.get_template_directory_uri().'/assets/favicon_io/favicon.ico" />';
+function onde_add_favicon()
+{
+	echo '<link rel="shortcut icon" type="image/x-icon" href="' . get_template_directory_uri() . '/assets/favicon_io/favicon.ico" />';
 }
 
 add_action('wp_head', 'onde_add_favicon');
@@ -116,24 +146,48 @@ add_action('wp_head', 'onde_add_favicon');
 add_action('wp_ajax_onde_load_posts', 'onde_load_posts');
 add_action('wp_ajax_nopriv_onde_load_posts', 'onde_load_posts');
 
-add_filter('wp_nav_menu_objects',function($sorted_menu_obj,$args) {
-	if(!ONDE_WOOCOMMERCE_ACTIVE) {
-		foreach($sorted_menu_obj as $key => $menu_object) {
-			if(intval($menu_object->object_id) === 117) {
+add_filter('wp_nav_menu_objects', function ($sorted_menu_obj, $args) {
+	if (!ONDE_WOOCOMMERCE_ACTIVE) {
+		foreach ($sorted_menu_obj as $key => $menu_object) {
+			if (intval($menu_object->object_id) === 117) {
 				unset($sorted_menu_obj[$key]);
 			}
-			if(intval($menu_object->object_id) === 118) {
+			if (intval($menu_object->object_id) === 118) {
 				unset($sorted_menu_obj[$key]);
 			}
-			if(intval($menu_object->object_id) === 119) {
+			if (intval($menu_object->object_id) === 119) {
 				unset($sorted_menu_obj[$key]);
 			}
-			if(intval($menu_object->object_id) === 120) {
+			if (intval($menu_object->object_id) === 120) {
 				unset($sorted_menu_obj[$key]);
 			}
-			
 		}
 	}
-	
 	return $sorted_menu_obj;
-},10,2);
+}, 10, 2);
+
+function onde_is_on_woocommerce()
+{
+	if (is_woocommerce() || is_cart() || is_checkout() || is_account_page() || is_product() || is_product_category() || is_shop()) {
+		return true;
+	}
+	return false;
+}
+function redirect_if_shop_page_is_not_in_the_menu()
+{
+	if (ONDE_WOOCOMMERCE_ACTIVE) {
+		if (!onde_is_item_in_menu('menu-1', 'Boutique')) {
+			if (!onde_is_site_admin() && onde_is_on_woocommerce()) {
+				wp_redirect(home_url(''), 302);
+				exit;
+			}
+		}
+	}
+}
+
+function onde_is_site_admin()
+{
+	return in_array('administrator',  wp_get_current_user()->roles);
+}
+
+add_action('get_header', 'redirect_if_shop_page_is_not_in_the_menu', 0);

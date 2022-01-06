@@ -11,15 +11,16 @@ endif;
     <div class="left-fix-empty-div"></div>
     <div class="onde-menu-container" aria-expanded="false" style="background-color:<?= $navbarBackground; ?>;">
         <?php
-        wp_nav_menu(
-            array(
-                'theme_location' => 'menu-1',
-                'menu_id'        => 'primary-menu',
-                'container' => '',
-                'walker' => new Onde_Nav_Walker()
-            )
-        );
-        
+        if(has_nav_menu('menu-1')) {
+            wp_nav_menu(
+                array(
+                    'theme_location' => 'menu-1',
+                    'menu_id'        => 'primary-menu',
+                    'container' => '',
+                    'walker' => new Onde_Nav_Walker()
+                )
+            );
+        }
         ?>
     </div>
     <div class="header-cart">

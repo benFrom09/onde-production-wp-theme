@@ -32,16 +32,10 @@ if (!class_exists('Woocommerce_Setup_Class')) {
              * @link https://docs.woocommerce.com/document/disable-the-default-stylesheet/
              */
             add_action('wp_enqueue_scripts', [$this, 'woocommerce_register_scripts']);
-            add_action( 'woocommerce_sidebar', 'onde_get_woocommerce_sidebar');
-            //set all shop product categories;
-            //$this->set_products_categories();
+            add_action('woocommerce_sidebar', 'onde_get_woocommerce_sidebar');
 
             add_filter('woocommerce_enqueue_styles', '__return_empty_array');
             add_filter('woocommerce_add_to_cart_fragments', [$this, 'onde_production_woocommerce_cart_link_fragment']);
-            //add_filter('woocommerce_get_catalog_ordering_args', [$this, 'onde_shop_product_order_by']);
-            //add_filter('woocommerce_get_catalog_ordering_args', [$this,'onde_woocommerce_catalog_orderby']);
-            //add_filter('woocommerce_catalog_orderby', [$this, 'onde_shop_product_order_by']);
-            //add_filter('woocommerce_get_catalog_ordering_args', [$this,'onde_custom_product_sorting']);
         }
 
         public function onde_production_woocommerce_setup()
@@ -68,7 +62,6 @@ if (!class_exists('Woocommerce_Setup_Class')) {
 
         public function woocommerce_register_scripts()
         {
-            //wp_enqueue_style('onde-production-woocommerce-style', ONDE_THEME_URI . '/woocommerce.css', array(), _S_VERSION);
             wp_enqueue_style('onde-production-woocommerce-style', ONDE_THEME_URI . '/woocommerce/assets/woocommerce.css', array(), _S_VERSION);
             wp_enqueue_style('onde-production-woocommerce-custom-style', ONDE_THEME_URI . '/assets/css/woocommerce-custom.css', array(), _S_VERSION);
         }
@@ -86,8 +79,8 @@ if (!class_exists('Woocommerce_Setup_Class')) {
                 ?>
                 </section>
                 <aside id="sidebar-L" class="sidebar">
-                    <?php do_action('woocommerce_sidebar'); 
-                        
+                    <?php do_action('woocommerce_sidebar');
+
                     ?>
                     <!-- main-wrapper -->
                 </aside>
@@ -96,7 +89,7 @@ if (!class_exists('Woocommerce_Setup_Class')) {
                 </aside>
             </main><!-- #main -->
 
-        <?php
+            <?php
             }
             /**
              * Cart Fragments.
@@ -123,27 +116,27 @@ if (!class_exists('Woocommerce_Setup_Class')) {
              */
             public static function onde_production_woocommerce_cart_link()
             {
-                if(ONDE_WOOCOMMERCE_ACTIVE && onde_is_item_in_menu('menu-1','Boutique')):
-        ?>
-            <a class="cart-contents" href="<?php echo esc_url(wc_get_cart_url()); ?>" title="<?php esc_attr_e('View your shopping cart', 'onde-production'); ?>">
-                <?php
-                $item_count_text = sprintf(
-                    /* translators: number of items in the mini cart. */
-                    _n('%d', '%d', WC()->cart->get_cart_contents_count(), 'onde-production'),
-                    WC()->cart->get_cart_contents_count()
-                );
-                ?>
-                <div class="amount-container">
-                    <span class="amount"><?php echo wp_kses_data(WC()->cart->get_cart_subtotal()); ?></span>
-                </div>
-                <div class="cart-total">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="count"><?php echo esc_html($item_count_text); ?></span>
-                </div>
+                if (ONDE_WOOCOMMERCE_ACTIVE && onde_is_item_in_menu('menu-1', 'Boutique')) :
+            ?>
+                <a class="cart-contents" href="<?php echo esc_url(wc_get_cart_url()); ?>" title="<?php esc_attr_e('View your shopping cart', 'onde-production'); ?>">
+                    <?php
+                    $item_count_text = sprintf(
+                        /* translators: number of items in the mini cart. */
+                        _n('%d', '%d', WC()->cart->get_cart_contents_count(), 'onde-production'),
+                        WC()->cart->get_cart_contents_count()
+                    );
+                    ?>
+                    <div class="amount-container">
+                        <span class="amount"><?php echo wp_kses_data(WC()->cart->get_cart_subtotal()); ?></span>
+                    </div>
+                    <div class="cart-total">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="count"><?php echo esc_html($item_count_text); ?></span>
+                    </div>
 
-            </a>
-        <?php
-            endif;
+                </a>
+            <?php
+                endif;
             }
 
             /**
@@ -158,7 +151,7 @@ if (!class_exists('Woocommerce_Setup_Class')) {
                 } else {
                     $class = '';
                 }
-        ?>
+            ?>
             <ul id="site-header-cart" class="site-header-cart">
                 <li class="<?php echo esc_attr($class); ?>">
                     <?php self::onde_production_woocommerce_cart_link(); ?>
@@ -178,23 +171,8 @@ if (!class_exists('Woocommerce_Setup_Class')) {
 
             public function onde_shop_product_order_by($option)
             {
-                var_dump($option);
-                wp_die();
                 $option['title'] = 'Sort by categories';
                 return $option;
-            }
-
-            public function onde_custom_product_sorting($args)
-            {
-                // Sortby categories
-                
-                if (isset($_GET['orderby']) && 'title' === $_GET['orderby']) {
-                    $args['orderby'] = 'title';
-                    $args['order'] = 'asc';
-                } else {
-                    return;
-                }
-                
             }
 
 

@@ -25,17 +25,10 @@ export const Ui = {
     onde_sub_menu_container:document.querySelector('#primary-menu .menu-item-has-children'),
     onde_sub_menu_arrow_btn:document.querySelectorAll('#primary-menu .sub-menu-arrow-btn'),
     /**
-     * LEFT-SIDEBAR
-     */
-
-    /**
      * ELEMENTS FOR HEADER ANIMATION
      */
 
     onde_site_branding_animated_elements:document.querySelectorAll('.ml12'),
-
-
-
     /**
      * e-commerce btn qty add 
      */
